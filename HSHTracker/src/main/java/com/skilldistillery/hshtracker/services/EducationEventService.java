@@ -7,4 +7,5 @@ import com.skilldistillery.hshtracker.entities.EducationEvent;
 public interface EducationEventService {
 List<EducationEvent> index();
 EducationEvent edEventById(int edId);
+EducationEvent addEdEvent(EducationEvent edEvent);
 }
