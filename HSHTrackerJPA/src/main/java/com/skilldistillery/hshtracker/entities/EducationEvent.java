@@ -16,22 +16,27 @@ public class EducationEvent {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private LocalDateTime date;
-//	private double duration;
-//	private String subject;
-//	private String location;
-//	private String student;
-//	private String notes;
+	private int duration;
+	private String subject;
+	private String location;
+	private String student;
+	private String notes;
 
 	public EducationEvent() {
 		super();
 	}
 	
-	
-	public EducationEvent(int id, LocalDateTime date) {
-	super();
-	this.id = id;
-	this.date = date;
-}
+	public EducationEvent(int id, LocalDateTime date, int duration, String subject, String location, String student,
+			String notes) {
+		super();
+		this.id = id;
+		this.date = date;
+		this.duration = duration;
+		this.subject = subject;
+		this.location = location;
+		this.student = student;
+		this.notes = notes;
+	}
 
 	public int getId() {
 		return id;
@@ -45,6 +50,56 @@ public class EducationEvent {
 	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+
+	public String getSubject() {
+		return subject;
+	}
+
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+
+	public String getLocation() {
+		return location;
+	}
+
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+
+	public String getStudent() {
+		return student;
+	}
+
+
+	public void setStudent(String student) {
+		this.student = student;
+	}
+
+
+	public String getNotes() {
+		return notes;
+	}
+
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -65,7 +120,8 @@ public class EducationEvent {
 
 	@Override
 	public String toString() {
-		return "EducationEvent [id=" + id + ", date=" + date + "]";
+		return "EducationEvent [id=" + id + ", date=" + date + ", duration=" + duration + ", subject=" + subject
+				+ ", location=" + location + ", student=" + student + ", notes=" + notes + "]";
 	}
 
 }
