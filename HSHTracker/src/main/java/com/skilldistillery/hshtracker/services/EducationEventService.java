@@ -9,4 +9,5 @@ List<EducationEvent> index();
 EducationEvent edEventById(int edId);
 EducationEvent addEdEvent(EducationEvent edEvent);
 EducationEvent updateEdEvent(EducationEvent edEvent, int edId);
+Boolean deleteEdEvent(int id);
 }

@@ -66,4 +66,10 @@ public class EducationEventServiceImpl implements EducationEventService{
 		}
 		return repo.saveAndFlush(exists);
 	}
+	
+	@Override
+	public Boolean deleteEdEvent(int id) {
+		repo.deleteById(id);
+		return !repo.existsById(id);
+	}
 }
