@@ -40,6 +40,30 @@ public class EducationEventServiceImpl implements EducationEventService{
 		}	
 		return repo.saveAndFlush(edEvent);
 	}
-	
-
+	@Override
+	public EducationEvent updateEdEvent(EducationEvent edEvent, int edId) {
+		EducationEvent exists = edEventById(edId);
+		if(exists == null) {
+			return null;
+		} else if (exists.getDate() != null) {
+			exists.setDate(edEvent.getDate());
+		}
+		if (exists.getDuration() != 0) {
+			System.out.println("Duration update");
+			exists.setDuration(edEvent.getDuration());
+		}
+		if (exists.getSubject() != null) {
+			exists.setSubject(edEvent.getSubject());
+		}
+		if (exists.getLocation() != null) {
+			exists.setLocation(edEvent.getLocation());
+		}
+		if (exists.getStudent() != null) {
+			exists.setStudent(edEvent.getStudent());
+		}
+		if (exists.getNotes() != null) {
+			exists.setNotes(edEvent.getNotes());
+		}
+		return repo.saveAndFlush(exists);
+	}
 }

@@ -8,4 +8,5 @@ public interface EducationEventService {
 List<EducationEvent> index();
 EducationEvent edEventById(int edId);
 EducationEvent addEdEvent(EducationEvent edEvent);
+EducationEvent updateEdEvent(EducationEvent edEvent, int edId);
 }
