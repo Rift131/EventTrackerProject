@@ -32,9 +32,6 @@ public class EducationEventServiceImpl implements EducationEventService{
 			edEvent.setSubject("Not Declared");
 		}
 		if (edEvent.getDate() == null) {
-		//	LocalDateTime defaultTime = LocalDateTime.of(null, null)1985-10-26T09:00:01.211;
-			// default to Back To The Future date 1985-07-03 when not entered
-			
 			// Backup to @CreationTimestamp (redundant)
 			edEvent.setDate(LocalDateTime.now());
 		}	
