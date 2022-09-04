@@ -7,7 +7,7 @@
 
 ## Overview
 
-For my SkillDistillery event-tracker project, I have built the backend of an application named Homeschool Hours Tracker. The credit for the idea goes to my wonderful wife who has homeschooled our boys from the very beginning after a 7-year career as a high school science teacher. The intent of this application is to solve the problem of Missouri's requirement for parents who homeschool their children, to log...
+For my SkillDistillery event-tracker project, I have built the backend of an application named Homeschool Hours Tracker. Full credit for the idea of this application goes to my wonderful wife who has homeschooled our boys from the very beginning after her 7-year career as a high school science teacher. The intent of this application is to solve the problem of Missouri's requirement for fellow parents who homeschool their children, to log...
 * Hours invested across core and elective subjects
 * The location of where the education was conducted
 
@@ -17,7 +17,7 @@ In the state of Missouri, once a child is the age of 7 as of 1 July, the trackin
 * A minimum of 1,000 hours must be recorded in total
 per year (homeschool years begin 1 July and run through 30 June)
 
-This application will provide Missouri parents with a solution to meeting the states requirements and ensure any audit they may undergo be conducted with the simplicity of a one-stop solution. 
+This application will provide our family and fellow Missouri parents with a solution to satisfying the state hour logging requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. 
 
 If you would like to visit the Education Event tracker site, please feel free to use the link below! Reference the table below for example URL's you can use to interact with the application.
 
@@ -100,6 +100,8 @@ After a minimum viable product is produced, the intent for this application is t
 * Create charts and graphs that show progress over time through each grade year
 * Allow for tracking of resources used to teach different subjects across each grade
 * USe the application as a centerpiece for a homeschool forum
+
+After careful consideration of all the desired functionality with my wife has been made, work will begin on a separate branch while retaining the original work. 
 
 ## A Few Screen Shots Taken During The Backend Creation Journey
 
