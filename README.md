@@ -3,7 +3,7 @@
 
 ## Author
 
-<p align="left"><img src="media/KenProfT.png" width="65"> Ken Pederson (Developer, Repo Owner, Database Administrator) </p>
+<p align="left"><img src="media/kenProfT.png" width="65"> Ken Pederson (Developer, Repo Owner, Database Administrator) </p>
 
 ## Overview
 
@@ -93,7 +93,7 @@ This project proved vital in gaining experience of the following...
 
 <p align="center"><img src="media/dbSchema.png" width="350"></p>
 
-After a minimum viable product is produced, the intent for this application is to incorporate the remaining tables of the database as seen above. It is my intent to also use the first concept to inspire new ideas beyond what I've already imagined. Current stretch goals include...
+After a minimum viable product is produced, the intent for this application is to incorporate the remaining tables of the database as seen above. At this time, only the "education_event" table is utilized. It is my intent to also use this first concept, once fully functional, to inspire new ideas beyond what I've already imagined. Current stretch goals include...
 * Google Maps through the address table for parents to be able to remember a site should they choose to later revisit and share the location with fellow homeschool families.
 * Create a login functionality 
 * Allow users to download an Excel or Numbers version of their data as a backup or for audit purposes
