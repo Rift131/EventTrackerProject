@@ -42,10 +42,40 @@ class EducationEventTest {
 	}
 
 	@Test
-	void test_EducationEvent_entity() {
+	void test_EducationEvent_entity_date() {
 		EducationEvent ee = em.find(EducationEvent.class, 1);
 		assertNotNull(ee);
 		assertEquals(2022, ee.getDate().getYear());
 	}
-
+	
+	@Test
+	void test_EducationEvent_entity_duration() {
+		EducationEvent ee = em.find(EducationEvent.class, 1);
+		assertNotNull(ee);
+		assertEquals(30, ee.getDuration());
+	}
+	@Test
+	void test_EducationEvent_entity_subject() {
+		EducationEvent ee = em.find(EducationEvent.class, 1);
+		assertNotNull(ee);
+		assertEquals("Math", ee.getSubject());
+	}
+	@Test
+	void test_EducationEvent_entity_location() {
+		EducationEvent ee = em.find(EducationEvent.class, 1);
+		assertNotNull(ee);
+		assertEquals("Home", ee.getLocation());
+	}
+	@Test
+	void test_EducationEvent_entity_student() {
+		EducationEvent ee = em.find(EducationEvent.class, 1);
+		assertNotNull(ee);
+		assertEquals("Billy", ee.getStudent());
+	}
+	@Test
+	void test_EducationEvent_entity_notes() {
+		EducationEvent ee = em.find(EducationEvent.class, 1);
+		assertNotNull(ee);
+		assertEquals("Covered Algebra, \"Algebra I\" pg 17", ee.getNotes());
+	}
 }
