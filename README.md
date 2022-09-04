@@ -101,7 +101,7 @@ After a minimum viable product is produced, the intent for this application is t
 * Allow for tracking of resources used to teach different subjects across each grade
 * USe the application as a centerpiece for a homeschool forum
 
-## A Few Screen Shots Taken During The Backend Applications Creation Journey
+## A Few Screen Shots Taken During The Backend Creation Journey
 
 * Code excerpt for adding a new Education Event in the database. Extra code was written to ensure default values for the subject being recorded and the date when the event occurred. By setting the subject to "Not Declared" the intent is to raise awareness to the user so they will update then event with the correct subject. The date is set to "now" as this will most likely be the case if the user is recording updates in real time. Regardless, it serves as a starting point.
 
