@@ -3,7 +3,7 @@
 
 ## Author
 
-<p align="left"><img src="media/kenProfT.jpg" width="105"> Ken Pederson (Developer, Repo Owner, Database Administrator) </p>
+<p align="left"><img src="media/kenProfT.png" width="105"> Ken Pederson (Developer, Repo Owner, Database Administrator) </p>
 
 ## Overview
 
