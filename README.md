@@ -26,7 +26,7 @@ This application will provide our family and fellow Missouri parents with a solu
 
 If you would like to visit the Education Event tracker site, please feel free to use the link below! Reference the table within the "Testing With Postman" section below for example URI's you can use to interact with the application. If you have any questions or would like to discuss this project, please don't hesitate to email me at ken@kendev131.com. 
 
-<p align="center"><a href="">PLACEHOLDER Click Here to Visit Homeschool Hours Tracker Project Site</a></>
+<p align="center"><a href="http://3.21.142.131:8080/HSHTracker">Click Here to Visit Homeschool Hours Tracker Project Site</a></>
 
 ## Description
 
@@ -72,7 +72,7 @@ To test the backend of the application visit the <a href="https://www.postman.co
     "notes" : "Test adding event, all fields included."
 }
 
-* Example code to use for PUT route can utilize any variation of the code above. The example route in the table is set to 2 but may be changed to 3 through 6 or any events added with the POST route. Please do not modify EducationEvent 1 due to all JUnit tests being written for its original data.
+* Example code to use for PUT URI can utilize any variation of the code above. The example URI in the table is set to 2 but may be changed to 3 through 6 or any events added with the POST route. Please do not modify EducationEvent 1 due to all JUnit tests being written for its original data.
 
 ## Lessons Learned
 
