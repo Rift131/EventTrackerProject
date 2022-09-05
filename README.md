@@ -19,7 +19,8 @@ per year (homeschool years begin 1 July and run through 30 June)
 
 This application will provide our family and fellow Missouri parents with a solution to satisfying the state hour logging requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. 
 
-<p align="center">![Alt Text](https://media.giphy.com/media/Qb6YqpuuPP4SlIdyK7/giphy.gif)</p>
+<img src="https://media.giphy.com/media/Qb6YqpuuPP4SlIdyK7/giphy.gif" align="center" width="40" height="35"/>
+[Alt Text](https://media.giphy.com/media/Qb6YqpuuPP4SlIdyK7/giphy.gif)
 
 ## Take The Homeschool Hours Tracker For A Test Drive
 
