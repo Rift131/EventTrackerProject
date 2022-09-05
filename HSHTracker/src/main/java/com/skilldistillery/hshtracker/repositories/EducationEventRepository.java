@@ -11,7 +11,7 @@ public interface EducationEventRepository extends JpaRepository<EducationEvent, 
 
 	EducationEvent findById(int edId);
 	List<EducationEvent> findBySubject(String subject);
-//	List<EducationEvent> findByLocation(String location);
+	List<EducationEvent> findByLocation(String location);
 //	List<EducationEvent> findByStudent(String studentName);
 //	List<EducationEvent> findByNotes(String notes);
 //	List<EducationEvent> findBy_Location_IgnoreCaseLikeOr_Notes_IgnoreCaseLikeOr_Subject_IgnoreCaseLike(String keyword1, String keyword2, String keyword3);

@@ -31,6 +31,10 @@ public class EducationEventServiceImpl implements EducationEventService{
 	public List<EducationEvent> findBySubject(String subject) {
 		return repo.findBySubject(subject);
 	}
+	@Override
+	public List<EducationEvent> findByLocation(String location) {
+		return repo.findByLocation(location);
+	}
 	
 	
 	
