@@ -45,9 +45,9 @@ public class EducationEventServiceImpl implements EducationEventService{
 		return repo.findByNotes_IgnoreCaseLike(keyword);
 	}
 	@Override
-	public List<EducationEvent> findByLocation_Notes_Or_Subject(String input) {
+	public List<EducationEvent> findByLocation_Notes_Or_Subject_Or_Student(String input) {
 		String keyword = "%" + input + "%";
-		return repo.findByLocation_IgnoreCaseLikeOrNotes_IgnoreCaseLikeOrSubject_IgnoreCaseLike(keyword, keyword, keyword);
+		return repo.findByLocation_IgnoreCaseLikeOrNotes_IgnoreCaseLikeOrSubject_IgnoreCaseLikeOrStudent_IgnoreCaseLike(keyword, keyword, keyword, keyword);
 	}
 	
 	

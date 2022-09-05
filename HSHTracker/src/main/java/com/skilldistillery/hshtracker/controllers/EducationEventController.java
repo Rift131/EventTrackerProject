@@ -50,9 +50,9 @@ public class EducationEventController {
 	public List<EducationEvent> findEdEventsByNotes(@PathVariable String notes) {
 		return svc.findByNotes(notes);
 	}
-	@GetMapping("edEventsLocationSubjectAndNotes/search/{keyword}")
+	@GetMapping("edEventsLocationSubjectStudentOrNotes/search/{keyword}")
 	public List<EducationEvent> findByLocation_Notes_Or_Subject(@PathVariable String keyword) {
-		return svc.findByLocation_Notes_Or_Subject(keyword);
+		return svc.findByLocation_Notes_Or_Subject_Or_Student(keyword);
 	}
 	
 	
