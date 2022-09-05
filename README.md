@@ -19,9 +19,9 @@ per year (homeschool years begin 1 July and run through 30 June)
 
 This application will provide our family and fellow Missouri parents with a solution to satisfying the state hour logging requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. 
 
-![Alt Text](https://media.giphy.com/media/Qb6YqpuuPP4SlIdyK7/giphy.gif)
+<p align="center">![Alt Text](https://media.giphy.com/media/Qb6YqpuuPP4SlIdyK7/giphy.gif)</p>
 
-<iframe src="https://giphy.com/embed/" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p align="center"><a href="https://giphy.com/gifs/audit-be-you-can-billcom-Qb6YqpuuPP4SlIdyK7">via GIPHY</a></p>
+## Take The Homeschool Hours Tracker For A Test Drive
 
 If you would like to visit the Education Event tracker site, please feel free to use the link below! Reference the table below for example URL's you can use to interact with the application. If you have any questions or would like to discuss this project, please don't hesitate to email me at ken@kendev131.com. 
 
