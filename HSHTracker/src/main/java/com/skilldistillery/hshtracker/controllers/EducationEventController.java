@@ -51,11 +51,11 @@ public class EducationEventController {
 	public List<EducationEvent> findEdEventsByNotes(@PathVariable String notes) {
 		return svc.findByNotes(notes);
 	}
-	@GetMapping("edEventsLocationSubjectStudentOrNotes/search/{keyword}")
+	@GetMapping("edEventsLocSubStuOrNot/search/{keyword}")
 	public List<EducationEvent> findByLocation_Notes_Or_Subject(@PathVariable String keyword) {
 		return svc.findByLocation_Notes_Or_Subject_Or_Student(keyword);
 	}
-	@GetMapping("edEventsBetweenDates/search/date/{start}/{end}")
+	@GetMapping("edEvtsBtwnDts/search/date/{start}/{end}")
 	public List<EducationEvent> findByEdEventBetweenDates(@PathVariable String start, @PathVariable String end) {
 		LocalDateTime begin = LocalDateTime.parse(start);
 		LocalDateTime close = LocalDateTime.parse(end);

@@ -46,7 +46,7 @@ What I enjoyed most about this stage of building the application is the very str
 
 To test the backend of the application visit the <a href="https://www.postman.com/">Postman</a> site. Once there, reference the table below for URL's testing the validity of the code once you've started up the program in the SpringToolSuite4 Boot Dashboard.
 
-| HTTP Verb | ' URI                      '| Request Body | Response Body    | 'Functionality</div>                                              '|
+| HTTP Verb | URI                      | Request Body | Response Body    | Functionality                                              |
 |:---------:|:---------------------|:------------:|:-----------------|:--------------------------------------------------------------------------|
 | GET       | '/api/edEvents'|              |  List of events  | Return a list of all education events                                      |
 | GET       | '/api/edEvents/4' |              |  Single event    | Return an education event by Id                                            |
@@ -54,8 +54,8 @@ To test the backend of the application visit the <a href="https://www.postman.co
 | GET       | '/api/edEventsLocation/home'|  List of events  | Return a list of education events by location                              |
 | GET       | '/api/edEventsStudent/Billy'|              |  List of events  | Return a list of education events by student name                          |
 | GET       | '/api/edEventsNotes/search/on'|              |  List of events  | Return a list of education events searching by keyword in the notes field  |
-| GET       | '/api/edEventsLocationSubjectStudentOrNotes/search/science'|              |  List of events  | Return a list of education events searching by keyword in the location, subject, student or notes field |
-| GET       | '/api/edEventsBetweenDates/search/date/2022-09-02T01:00:00/2022-09-04T01:00:00'|              |  List of events  | Return a list of education events occurring between submitted dates        |
+| GET       | '/api/edEventsLocSubStuOrNot/search/science'|              |  List of events  | Return a list of education events searching by keyword in the location, subject, student or notes field |
+| GET       | '/api/edEvtsBtwnDts/search/date/2022-09-02T01:00:00/2022-09-04T01:00:00'|              |  List of events  | Return a list of education events occurring between submitted dates        |
 | POST      | '/api/newEdEvent' | JSON         |  Created event   | Adds a new EducationEvent (see example code for a new event below)         |
 | PUT       | '/api/updateEdEvent/2'| JSON         |  Updated event   | Modifies an existing EducationEvent (6 events exist in the database)       |
 | DEL       | '/api/deleteEdEvent/7'|              |                  | Deletes an EducationEvent. Assumes you have created 1 new EducationEvent   |
