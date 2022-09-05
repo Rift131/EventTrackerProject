@@ -17,14 +17,14 @@ In the state of Missouri, once a child is the age of 7 as of 1 July, the trackin
 * A minimum of 1,000 hours must be recorded in total
 per year (homeschool years begin 1 July and run through 30 June)
 
+<p align="center"><img src="https://media.giphy.com/media/Qb6YqpuuPP4SlIdyK7/giphy.gif"/></p>
+
 This application will provide our family and fellow Missouri parents with a solution to satisfying the state hour logging requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. 
 
-<p align="center"><img src="https://media.giphy.com/media/Qb6YqpuuPP4SlIdyK7/giphy.gif"/></p>
-[!Alt Text](https://media.giphy.com/media/Qb6YqpuuPP4SlIdyK7/giphy.gif)
 
-## Take The Homeschool Hours Tracker For A Test Drive
+## Take The Homeschool Hours Tracker For A Test Drive!
 
-If you would like to visit the Education Event tracker site, please feel free to use the link below! Reference the table below for example URL's you can use to interact with the application. If you have any questions or would like to discuss this project, please don't hesitate to email me at ken@kendev131.com. 
+If you would like to visit the Education Event tracker site, please feel free to use the link below! Reference the table within the "Testing With Postman" section below for example URI's you can use to interact with the application. If you have any questions or would like to discuss this project, please don't hesitate to email me at ken@kendev131.com. 
 
 <p align="center"><a href="">PLACEHOLDER Click Here to Visit Homeschool Hours Tracker Project Site</a></>
 
