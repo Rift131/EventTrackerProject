@@ -1,5 +1,6 @@
 package com.skilldistillery.hshtracker.controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -54,7 +55,12 @@ public class EducationEventController {
 	public List<EducationEvent> findByLocation_Notes_Or_Subject(@PathVariable String keyword) {
 		return svc.findByLocation_Notes_Or_Subject_Or_Student(keyword);
 	}
-	
+	@GetMapping("edEventsBetweenDates/search/date/{start}/{end}")
+	public List<EducationEvent> findByEdEventBetweenDates(@PathVariable String start, @PathVariable String end) {
+		LocalDateTime begin = LocalDateTime.parse(start);
+		LocalDateTime close = LocalDateTime.parse(end);
+		return svc.findByEdEventBetweenDates(begin, close);
+	}
 	
 	
 	@PostMapping("newEdEvent")

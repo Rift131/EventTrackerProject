@@ -49,6 +49,10 @@ public class EducationEventServiceImpl implements EducationEventService{
 		String keyword = "%" + input + "%";
 		return repo.findByLocation_IgnoreCaseLikeOrNotes_IgnoreCaseLikeOrSubject_IgnoreCaseLikeOrStudent_IgnoreCaseLike(keyword, keyword, keyword, keyword);
 	}
+	@Override
+	public List<EducationEvent> findByEdEventBetweenDates(LocalDateTime start, LocalDateTime end) {
+		return repo.findByDateBetween(start, end);
+	}
 	
 	
 	
