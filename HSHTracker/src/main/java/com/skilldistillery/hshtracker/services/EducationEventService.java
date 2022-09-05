@@ -12,6 +12,7 @@ List<EducationEvent> findBySubject(String subject);
 List<EducationEvent> findByLocation(String location);
 List<EducationEvent> findByStudent(String student);
 List<EducationEvent> findByNotes(String notes);
+List<EducationEvent> findByLocation_Notes_Or_Subject(String input);
 // POST HTTP VERBS
 EducationEvent addEdEvent(EducationEvent edEvent);
 
