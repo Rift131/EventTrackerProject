@@ -42,6 +42,10 @@ public class EducationEventController {
 	public List<EducationEvent> findEdEventsByLocation(@PathVariable String location) {
 		return svc.findByLocation(location);
 	}
+	@GetMapping("edEventsStudent/{student}")
+	public List<EducationEvent> findEdEventsByStudent(@PathVariable String student) {
+		return svc.findByStudent(student);
+	}
 	
 	@PostMapping("newEdEvent")
 	public EducationEvent addEdEvent(@RequestBody EducationEvent newEdEvent, HttpServletResponse resp) {

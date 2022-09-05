@@ -10,6 +10,7 @@ List<EducationEvent> index(); // FREE- not found in the Repository
 EducationEvent edEventById(int edId);
 List<EducationEvent> findBySubject(String subject);
 List<EducationEvent> findByLocation(String location);
+List<EducationEvent> findByStudent(String student);
 // POST HTTP VERBS
 EducationEvent addEdEvent(EducationEvent edEvent);
 
