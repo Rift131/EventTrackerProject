@@ -13,7 +13,7 @@ public interface EducationEventRepository extends JpaRepository<EducationEvent, 
 	List<EducationEvent> findBySubject(String subject);
 	List<EducationEvent> findByLocation(String location);
 	List<EducationEvent> findByStudent(String studentName);
-//	List<EducationEvent> findByNotes(String notes);
+	List<EducationEvent> findByNotes_IgnoreCaseLike(String notes);
 //	List<EducationEvent> findBy_Location_IgnoreCaseLikeOr_Notes_IgnoreCaseLikeOr_Subject_IgnoreCaseLike(String keyword1, String keyword2, String keyword3);
 //	List<EducationEvent> findByDateBetween(LocalDateTime start, LocalDateTime end);
 }

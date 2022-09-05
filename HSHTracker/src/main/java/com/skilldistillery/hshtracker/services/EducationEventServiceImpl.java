@@ -39,6 +39,11 @@ public class EducationEventServiceImpl implements EducationEventService{
 	public List<EducationEvent> findByStudent(String student) {
 		return repo.findByStudent(student);
 	}
+	@Override
+	public List<EducationEvent> findByNotes(String notes) {
+		String keyword = "%" + notes + "%";
+		return repo.findByNotes_IgnoreCaseLike(keyword);
+	}
 	
 	
 	
