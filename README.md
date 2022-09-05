@@ -19,6 +19,8 @@ per year (homeschool years begin 1 July and run through 30 June)
 
 This application will provide our family and fellow Missouri parents with a solution to satisfying the state hour logging requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. 
 
+<iframe src="https://giphy.com/embed/Qb6YqpuuPP4SlIdyK7" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p align="center"><a href="https://giphy.com/gifs/audit-be-you-can-billcom-Qb6YqpuuPP4SlIdyK7">via GIPHY</a></p>
+
 If you would like to visit the Education Event tracker site, please feel free to use the link below! Reference the table below for example URL's you can use to interact with the application. If you have any questions or would like to discuss this project, please don't hesitate to email me at ken@kendev131.com. 
 
 <p align="center"><a href="">PLACEHOLDER Click Here to Visit Homeschool Hours Tracker Project Site</a></>
@@ -41,13 +43,13 @@ What I enjoyed most about this stage of building the application is the very str
 
 To test the backend of the application visit the <a href="https://www.postman.com/">Postman</a> site. Once there, reference the table below for URL's testing the validity of the code once you've started up the program in the SpringToolSuite4 Boot Dashboard.
 
-| HTTP Verb | Route                                     | Request Body | Response Body             | Functionality                                                              |
-|:----------|:------------------------------------------|:-------------|:--------------------------|:---------------------------------------------------------------------------|
-| GET       | http://localhost:8083/api/edEvents        |              |  List of education events | Return a list of all education events                                      |
-| GET       | http://localhost:8083/api/edEvents/4      |              |  Single education event   | Return an EducationEvent by Id                                             |
-| POST      | http://localhost:8083/api/newEdEvent      | JSON         |  Created education event  | Adds a new EducationEvent (see example code for a new event below)                        |
-| PUT       | http://localhost:8083/api/updateEdEvent/2 | JSON         |  Updated education event  | Modifies an existing EducationEvent (6 events exist in the database)       |
-| DEL       | http://localhost:8083/api/deleteEdEvent/7 |              |                           | Deletes an EducationEvent. Assumes you have created 1 new EducationEvent   |
+| HTTP Verb | URI                    | Request Body | Response Body             | Functionality                                                              |
+|:---------:|:-----------------------|:------------:|:--------------------------|:---------------------------------------------------------------------------|
+| GET       | '/api/edEvents'        |              |  List of education events | Return a list of all education events                                      |
+| GET       | '/api/edEvents/4'      |              |  Single education event   | Return an EducationEvent by Id                                             |
+| POST      | '/api/newEdEvent'      | JSON         |  Created education event  | Adds a new EducationEvent (see example code for a new event below)         |
+| PUT       | '/api/updateEdEvent/2' | JSON         |  Updated education event  | Modifies an existing EducationEvent (6 events exist in the database)       |
+| DEL       | '/api/deleteEdEvent/7' |              |                           | Deletes an EducationEvent. Assumes you have created 1 new EducationEvent   |
 
 
 * Example code to use for POST routes below. Note that the date and subject may be omitted due to default values being set in the service file.
