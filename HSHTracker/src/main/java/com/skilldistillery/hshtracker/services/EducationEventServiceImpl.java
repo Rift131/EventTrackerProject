@@ -13,7 +13,7 @@ import com.skilldistillery.hshtracker.repositories.EducationEventRepository;
 public class EducationEventServiceImpl implements EducationEventService{
 	@Autowired
 	private EducationEventRepository repo;
-	// Find all education events (No representative query in the repository since this is free)
+	// GET METHODS 
 	@Override
 	public List<EducationEvent> index() {
 		return repo.findAll();
@@ -26,6 +26,17 @@ public class EducationEventServiceImpl implements EducationEventService{
 		}
 		return repo.findById(edId);
 	}
+	
+	@Override
+	public List<EducationEvent> findBySubject(String subject) {
+		return repo.findBySubject(subject);
+	}
+	
+	
+	
+	
+	
+	// POST METHODS
 	@Override
 	public EducationEvent addEdEvent(EducationEvent edEvent) {
 		if (edEvent.getSubject() == null) {
@@ -69,4 +80,5 @@ public class EducationEventServiceImpl implements EducationEventService{
 		repo.deleteById(id);
 		return !repo.existsById(id);
 	}
+	
 }
