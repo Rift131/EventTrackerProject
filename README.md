@@ -46,7 +46,7 @@ What I enjoyed most about this stage of building the application is the very str
 
 To test the backend of the application visit the <a href="https://www.postman.com/">Postman</a> site. Once there, reference the table below for URL's testing the validity of the code once you've started up the program in the SpringToolSuite4 Boot Dashboard.
 
-| HTTP Verb | <div style="width:100px">URI</div>                  | Request Body | Response Body    | <div style="width:290px">Functionality</div>                                                               |
+| HTTP Verb | ' URI                      '| Request Body | Response Body    | 'Functionality</div>                                              '|
 |:---------:|:---------------------|:------------:|:-----------------|:--------------------------------------------------------------------------|
 | GET       | '/api/edEvents'|              |  List of events  | Return a list of all education events                                      |
 | GET       | '/api/edEvents/4' |              |  Single event    | Return an education event by Id                                            |
