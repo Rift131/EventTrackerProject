@@ -28,7 +28,7 @@ This application will provide our family and fellow Missouri parents with a solu
 
 If you would like to visit the Education Event tracker site, please feel free to use the link below! Reference the table within the "Testing With Postman" section below for example URI's you can use to interact with the applications backend functionality. If you have any questions or would like to discuss this project, please don't hesitate to email me at ken@kendev131.com. 
 
-<p align="center"><a href="http://3.21.142.131:8080/HSHTracker">Click Here to Visit Homeschool Hours Tracker Project Site</a></>
+<p align="center"><a href="http://3.21.142.131:8080/HSHTracker">(PLACEHOLDER ->)Click Here to Visit Homeschool Hours Tracker Project Site</a></>
 
 ## Description
 
