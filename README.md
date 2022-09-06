@@ -44,7 +44,7 @@ What I enjoyed most about this stage of building the application is the very str
 
 ## Testing With Postman
 
-<p align="center"><img src="media/postman.png" width="350"></p>
+<p align="center"><img src="media/postman.png" width="450"></p>
 
 To test the backend of the application visit the <a href="https://www.postman.com/">Postman</a> site. Once there, reference the table below for URL's testing the validity of the code once you've started up the program in the SpringToolSuite4 Boot Dashboard.
 
@@ -106,7 +106,7 @@ This project proved vital in gaining experience of the following...
 
 ## Stretch/Future Goals
 
-<p align="center"><img src="media/dbSchema.png" width="350"></p>
+<p align="center"><img src="media/dbSchema.png" width="450"></p>
 
 After a minimum viable product is produced, the intent for this application is to incorporate the remaining tables of the database as seen above. At this time, only the "education_event" table is utilized. It is my intent to also use this first concept, once fully functional, to inspire new ideas beyond what I've already imagined. Current stretch goals include...
 * Google Maps through the address table for parents to be able to remember a site should they choose to later revisit and share the location with fellow homeschool families.
