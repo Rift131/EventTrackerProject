@@ -48,7 +48,8 @@ What I enjoyed most about this stage of building the application is the very str
 
 To test the backend of the application, a user may visit the <a href="https://www.postman.com/">Postman</a> site. Once set up, reference the table below for URI's testing the validity of the code once you've started up the program in the SpringToolSuite4 Boot Dashboard.
 
-> NOTE: For testing a non-deployed, local version of the application, each URI is preceded with "http://localhost:8083"
+> For testing a non-deployed, local version of the application, each URI is preceded with "http://localhost:8083"
+> Testing in a deployed environment, the prefix to the URI is "http://3.21.142.131:8080/HSHTracker"
 
 | HTTP Verb | URI                  | Request Body | Response Body    | Functionality                                              |
 |:---------:|:---------------------|:------------:|:-----------------|:--------------------------------------------------------------------------|
@@ -77,6 +78,10 @@ To test the backend of the application, a user may visit the <a href="https://ww
 }
 
 * Example code to use for PUT URI can utilize any variation of the code above. The example URI in the table is set to 2 but may be changed to 3 through 6 or any events added with the POST route. Please do not modify EducationEvent 1 due to all JUnit tests being written for its original data.
+
+* Example URL to test searching for events between two dates in Postman below.
+
+> http://3.21.142.131:8080/HSHTracker/api/edEvtsBtwnDts/search/date/2022-09-02T01:00:00/2022-09-04T01:00:00
 
 ## Lessons Learned
 
