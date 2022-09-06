@@ -19,14 +19,14 @@ per year (homeschool years begin 1 July and run through 30 June)
 
 <p align="center"><img src="https://media.giphy.com/media/Qb6YqpuuPP4SlIdyK7/giphy.gif"/></p>
 
-This application will provide our family and fellow Missouri parents with a solution that satisfies the Missouri hour record-keeping requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. However, things change! While these requirements are not forecasted to change as of this writing (September of 2022), it is important to maintain situational awareness. 
+This application will provide our family and fellow Missouri parents with a solution that satisfies the Missouri hour record-keeping requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. However, things change! While these requirements are not forecasted to evolve as of this writing (September of 2022), it is important to maintain situational awareness... 
 
-> Visit  www.hslda.org for potential changes at least once each year, before beginning a new year of teaching.
+> RECOMMENDED: Visit  www.hslda.org for potential changes at least once each year, before beginning a new year of teaching.
 
 
 ## Take The Homeschool Hours Tracker For A Test Drive!
 
-If you would like to visit the Education Event tracker site, please feel free to use the link below! Reference the table within the "Testing With Postman" section below for example URI's you can use to interact with the application. If you have any questions or would like to discuss this project, please don't hesitate to email me at ken@kendev131.com. 
+If you would like to visit the Education Event tracker site, please feel free to use the link below! Reference the table within the "Testing With Postman" section below for example URI's you can use to interact with the applications backend functionality. If you have any questions or would like to discuss this project, please don't hesitate to email me at ken@kendev131.com. 
 
 <p align="center"><a href="http://3.21.142.131:8080/HSHTracker">Click Here to Visit Homeschool Hours Tracker Project Site</a></>
 
@@ -40,13 +40,13 @@ In this first version, the backend has been created using REST and thoroughly te
 
 One pillar at a time.
 
-What I enjoyed most about this stage of building the application is the very straight forward approach of building the backend from "the ground up". Each functionality piece began with the Repository (where applicable), then Service layer, the Service Implementation layer, next the Controller and finally using Postman to ensure functionality. Nothing else occurred until each step of this process proved successful. This approach kepy each stage of functionality development clear and distinct from the others, thereby preventing getting "lost in the sauce".
+What I enjoyed most about this stage of building the application is the very straight forward approach of building the backend from "the ground up". Each functionality "pillar" began with the Repository (where applicable), then the Service layer, the Service Implementation layer, next the Controller and finally using Postman to prove functionality. No other functionality was started until the current capability proved successful. This approach kept each stage of functionality development clear and distinct from the others, thereby preventing getting "lost in the sauce" and ensuring troubleshooting was straight forward.
 
 ## Testing With Postman
 
 <p align="center"><img src="media/postman.png" width="450"></p>
 
-To test the backend of the application visit the <a href="https://www.postman.com/">Postman</a> site. Once there, reference the table below for URL's testing the validity of the code once you've started up the program in the SpringToolSuite4 Boot Dashboard.
+To test the backend of the application, a user may visit the <a href="https://www.postman.com/">Postman</a> site. Once set up, reference the table below for URI's testing the validity of the code once you've started up the program in the SpringToolSuite4 Boot Dashboard.
 
 > NOTE: For testing a non-deployed, local version of the application, each URI is preceded with "http://localhost:8083"
 
@@ -80,7 +80,7 @@ To test the backend of the application visit the <a href="https://www.postman.co
 
 ## Lessons Learned
 
-This project proved vital in gaining experience of the following...
+This project proved vital in gaining the following experience...
 * How the Controllers mapping annotation directly links with what appears in the URL
 * The strict syntax requirements of the methods listed in the Repository for successful SQL queries (specific references to fields of an entity and exact wording for "finding" what you're looking for)
 * The inability to write in certain methods in the Repository (such as findAll, findById, adding new instances of an event, etc.). These examples all cause the application to break, leading to a quick realization of the appropriate types of methods that belong in the Repository.
@@ -118,7 +118,7 @@ After a minimum viable product is produced, the intent for this application is t
 
 After careful consideration of all the desired functionality with my wife has been made, work will begin on a separate branch while retaining the original work. 
 
-## A Few Screen Shots Taken During The Backend Creation Journey
+## A Few Screen Shots Of Code Taken During The Backend Creation Journey
 
 * Code excerpt for adding a new Education Event in the database. Extra code was written to ensure default values for the subject being recorded and the date when the event occurred. By setting the subject to "Not Declared" the intent is to raise awareness to the user so they will update then event with the correct subject. The date is set to "now" as this will most likely be the case if the user is recording updates in real time. Regardless, it serves as a starting point.
 
