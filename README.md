@@ -48,7 +48,7 @@ What I enjoyed most about this stage of building the application is the very str
 
 To test the backend of the application visit the <a href="https://www.postman.com/">Postman</a> site. Once there, reference the table below for URL's testing the validity of the code once you've started up the program in the SpringToolSuite4 Boot Dashboard.
 
-> For testing a non-deployed, local version of the application, each URI is preceded with "http://localhost:8083"
+> NOTE: For testing a non-deployed, local version of the application, each URI is preceded with "http://localhost:8083"
 
 | HTTP Verb | URI                  | Request Body | Response Body    | Functionality                                              |
 |:---------:|:---------------------|:------------:|:-----------------|:--------------------------------------------------------------------------|
