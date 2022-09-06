@@ -67,7 +67,7 @@ To test the backend of the application, a user may visit the <a href="https://ww
 
 * Example code to use for POST routes below. Note that the date and subject may be omitted due to default values being set in the service file.
 
-{
+> {
     "date" : "2022-09-04T12:59:11.332",
     "duration" : 15,
     "subject" : "Language Arts",
