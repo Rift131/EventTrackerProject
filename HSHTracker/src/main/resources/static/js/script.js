@@ -50,10 +50,11 @@ function getEventsXHR(student) {
 	xhr.open('GET', `api/edEventsStudent/${student}`);
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState === 4) {
-			if(xhr.status === 200) {
+			if(xhr.status === 201) {
 				let studentJson = xhr.responseText;
 				let studentEvents = JSON.parse(studentJson);
 				console.log("INVOKING FUNCTION: displayStudentEventsDOM");
+				console.log("XHR status BEFORE invoking displayStudentEventsDOM: " + xhr.status);
 				displayStudentEventsDOM(studentEvents);
 			} else if (xhr.status === 404) {
 				displayError("A student by that name was not found");
@@ -64,6 +65,12 @@ function getEventsXHR(student) {
 	};
 	xhr.send();
 	}
+// DISPLAY ERROR FUNCTIONS
+function displayError(msg) {
+	let dataDiv = document.getElementById('eventsByName');
+	dataDiv.textContent = '';
+	dataDiv.textContent = msg;
+}
 	
 	// DOM Function to display the students list of ed events by student name
 	function displayStudentEventsDOM(studentEvents) {
