@@ -26,7 +26,19 @@ function init() {
 		educationEvent.notes = addEdEventForm.notes.value;
 		console.log("BEFORE CALLING CREATE FUNCTION");
 		console.log(educationEvent);
+		// Ensure Minimum Inputs
+		let minDataCk =  verifyMinData(educationEvent.duration, educationEvent.location, educationEvent.student);
+		if(minDataCk.length === 0) {
 		createEventForm(educationEvent);
+		} else {
+			let dataDiv = document.getElementById('missingEntries');
+			let errMessage = document.createElement('h3');
+			errMessage.style.color = 'red';
+			errMessage.textContent = minDataCk;
+			alert("The student name, duration and location fields cannot be blank.");
+			clearErrors();
+		}
+		
 });
 // Last curly brace for initialization of forms and buttons
 }
@@ -85,7 +97,7 @@ function displayNewStudentEventDOM(educationEvent) {
 	let dataDiv1 = document.getElementById("newEdEvent");
 	dataDiv1.textContent = '';
 	
-	let student = document.createElement('h1');
+	let student = document.createElement('h3');
 	student.textContent = `Your update for ${educationEvent.student} has been recorded!`;
 	dataDiv1.appendChild(student);
 	
@@ -143,7 +155,28 @@ function displayError(msg) {
 	dataDiv.textContent = '';
 	dataDiv.textContent = msg;
 }
-	
+
+function displayErrorNewEvent(msg) {
+	let dataDiv = document.getElementById('newEdEvent');
+	dataDiv.textContent = '';
+	dataDiv.textContent = msg;
+}
+
+let verifyMinData = function(duration, location, student) {
+	let errors = [];
+	 if(!duration > 0 || location === '' || student === '') {
+		errors.push("The student name, duration and location fields cannot be blank.")
+	}
+	return errors;
+}	
+
+function clearErrors() {
+	let errors = document.getElementById("missingEntries");
+	while (errors.firstElementChild) {
+		errors.removeChild(errors.firstElementChild);
+	}
+	console.log("Errors removed");
+}
 // DOM Function to display the students list of ed events by student name
 function displayStudentEventsDOM(studentEvents) {
 	console.log("FUNCTION INVOKED: displayStudentEventsDOM");

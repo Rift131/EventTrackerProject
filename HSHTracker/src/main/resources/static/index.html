@@ -14,15 +14,17 @@
  <button name="lookUpName">Find Hours Recorded By Student Name</button>
  </form>
 
+<br>
  <div id="eventsByName"></div> 
  <div id="eventList"></div>  
+<br>
 
 <div>
 <hr>
 <form name="addEdEventForm">
-
+<h2>Record an Education Event for your Student</h2>
 <label for="student">Student Name</label>
-<input type="text" name="student"> <br>
+<input type="text" name="student" required="required"> <br>
 
 <label for="subject">Subject</label>
 <select name="subject">
@@ -38,21 +40,22 @@
 <input type="datetime-local" name="date"> <br>
 
 <label for="duration">Duration (minutes)</label>
-<input type="number" name="duration"> <br>
+<input type="number" name="duration" required="required"> <br>
 
 <label for="location">Location</label>
-<input type="text" name="location"> <br>
+<input type="text" name="location" required="required"> <br>
 
 <label for="notes">Notes</label>
-<textarea rows="4" cols="40" name="notes"></textarea> <br>
+<textarea rows="4" cols="40" name="notes" required="required"></textarea> <br>
 
-<button name="addEdEvent">Record this Event!</button>
+<button type="submit" id="submit" name="addEdEvent">Record this Event!</button>
 
 </form>
 </div>
 	
  
 <div id="newEdEvent"></div>
+<div id="missingEntries"></div>
  
  <!-- space for result of search && option to delete && update(?)-->
  
