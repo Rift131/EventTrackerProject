@@ -22,6 +22,7 @@ per year (homeschool years begin 1 July and run through 30 June)
 This application will provide our family and fellow Missouri parents with a solution that satisfies the Missouri hour record-keeping requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. However, things change! While these requirements are not forecasted to evolve as of this writing (September of 2022), it is important to maintain situational awareness... 
 
 > RECOMMENDED: Visit  www.hslda.org for potential requirement changes at least once each year, before beginning a new year of teaching.
+> RECOMMENDED: Visit https://fhe-mo.org/ to stay informed of proposed legislative changes affecting homeshool freedom.
 
 
 ## Take The Homeschool Hours Tracker For A Test Drive!
