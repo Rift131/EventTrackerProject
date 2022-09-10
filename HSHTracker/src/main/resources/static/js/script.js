@@ -3,7 +3,7 @@ window.addEventListener('load', function(e) {
 	init();
 });
 
-// *******************************INITIALIZATION FUNCTION***********************************
+// *******************************INITIALIZATION FUNCTIONS***********************************
 function init() {
 	document.searchByNameForm.lookUpName.addEventListener('click', function(event) {
 		event.preventDefault();
@@ -13,39 +13,113 @@ function init() {
 			getEventsXHR(student);
 		}
 		});
+		
+	document.addEdEventForm.addEdEvent.addEventListener('click', function(e) {
+		e.preventDefault();
+		console.log("Adding edEvent");
+		let educationEvent = {};
+		educationEvent.date = addEdEventForm.date.value;
+		educationEvent.duration = addEdEventForm.duration.value;
+		educationEvent.subject = addEdEventForm.subject.value;
+		educationEvent.location = addEdEventForm.location.value;
+		educationEvent.student = addEdEventForm.student.value;
+		educationEvent.notes = addEdEventForm.notes.value;
+		console.log("BEFORE CALLING CREATE FUNCTION");
+		console.log(educationEvent);
+		createEventForm(educationEvent);
+});
+// Last curly brace for initialization of forms and buttons
 }
 // NEW FUNCTION
-//function loadAllEvents() {
-//	
-//	let xhr = new XMLHttpRequest();
-//	xhr.open("GET", "api/edEvents");
-//	xhr.onreadystatechange = function() {
-//		if(xhr.readyState === 4) {
-//			if(xhr.status === 200) {
-//				displayEventsXHR(JSON.parse(xhr.responseText));
-//			} else {
-//				console.error("Error loading events: " + xhr.status);
-//			}
-//		}
-//	};
-//	xhr.send();
-//}
+
 // ************************************CRUD FUNCTIONS****************************************
 
-// CRUD: CREATE FUNCTION
-
-function createEventForm(createEvent) {
+// CRUD: CREATE FUNCTIONS
+// function loadNewEvent() {
 	
+	//let xhr = new XMLHttpRequest();
+	//xhr.open("GET", "api/edEvents");
+	//xhr.onreadystatechange = function() {
+		//if(xhr.readyState === 4) {
+			//if(xhr.status === 200) {
+				//displayEventsXHR(JSON.parse(xhr.responseText));
+			//} else {
+				//console.error("Error loading events: " + xhr.status);
+			//}
+		//}
+	//};
+	//xhr.send();
+//}
+
+
+function createEventForm(educationEvent) {
+	console.log("CREATE EVENT FORM: " + educationEvent);
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', 'api/newEdEvent');
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState === 4) {
+			console.log("XHR Code after first if statement: " + xhr.status);
+		if(xhr.status === 201) {
+			console.log("Ready to invoke display function.");
+			// display the new record to the user in an unordered list NOTE: used educationEvent as argument to display
+			displayNewStudentEventDOM(JSON.parse(xhr.responseText));
+		} else if(xhr.status === 400) {
+			displayError("Invalid data");
+		} else {
+			displayError("Error recording this event: " + xhr.status);
+		}
+	}
+	}
+	// convert to JSON and send new entry to the controller
+	xhr.setRequestHeader("Content-type", "application/json");
+	let edEventJson = JSON.stringify(educationEvent);
+	console.log("SUCCESS: new edEvent sent to the controller");
+	xhr.send(edEventJson);
 }
 
 // CRUD: RETRIEVE FUNCTIONS
+
+//  FUNCTION TO DISPLAY 
+
+function displayNewStudentEventDOM(educationEvent) {
+	let dataDiv1 = document.getElementById("newEdEvent");
+	dataDiv1.textContent = '';
+	
+	let student = document.createElement('h1');
+	student.textContent = `Your update for ${educationEvent.student} has been recorded!`;
+	dataDiv1.appendChild(student);
+	
+	let ul = document.createElement('ul');
+	
+	let subject = document.createElement('li');
+	subject.textContent = "Subject: " + educationEvent.subject;
+	ul.appendChild(subject);
+
+	let date = document.createElement('li');
+	date.textContent = "Date: " + educationEvent.date;
+	ul.appendChild(date);
+	
+	let duration = document.createElement('li');
+	duration.textContent = "Duration (minutes): " + educationEvent.duration;
+	ul.appendChild(duration);
+
+	let location = document.createElement('li');
+	location.textContent = "Location: " + educationEvent.location;
+	ul.appendChild(location);
+
+	let notes = document.createElement('blockquote');
+	notes.textContent = "Notes: " + educationEvent.notes;
+	ul.appendChild(notes);
+	
+	dataDiv1.appendChild(ul);
+	
+	document.body.appendChild(ul);
+}
 
 
 // XHR GET
 // The parameter to the function MATTERS, it must match the Div Id
 function getEventsXHR(student) {
-	console.log("IN DISPLAY EVENTS XHR");
-	console.log("ARGUMENT SENT TO displayEventsXHR: " + student);
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', `api/edEventsStudent/${student}`);
 	xhr.onreadystatechange = function() {
@@ -53,8 +127,6 @@ function getEventsXHR(student) {
 			if(xhr.status === 201) {
 				let studentJson = xhr.responseText;
 				let studentEvents = JSON.parse(studentJson);
-				console.log("INVOKING FUNCTION: displayStudentEventsDOM");
-				console.log("XHR status BEFORE invoking displayStudentEventsDOM: " + xhr.status);
 				displayStudentEventsDOM(studentEvents);
 			} else if (xhr.status === 404) {
 				displayError("A student by that name was not found");
@@ -72,11 +144,11 @@ function displayError(msg) {
 	dataDiv.textContent = msg;
 }
 	
-	// DOM Function to display the students list of ed events by student name
-	function displayStudentEventsDOM(studentEvents) {
-		console.log("FUNCTION INVOKED: displayStudentEventsDOM");
-		let eventsByNameDiv = document.getElementById('eventsByName');
-		eventsByNameDiv.textContent = '';
+// DOM Function to display the students list of ed events by student name
+function displayStudentEventsDOM(studentEvents) {
+	console.log("FUNCTION INVOKED: displayStudentEventsDOM");
+	let eventsByNameDiv = document.getElementById('eventsByName');
+	eventsByNameDiv.textContent = '';
 	// Setup of the unordered list with a header of the students name
 	if(studentEvents.length > 0) {
 		// LIST CODE

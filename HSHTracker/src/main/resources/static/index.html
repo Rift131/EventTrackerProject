@@ -13,20 +13,51 @@
  <input type="text" name="student">
  <button name="lookUpName">Find Hours Recorded By Student Name</button>
  </form>
+
+ <div id="eventsByName"></div> 
+ <div id="eventList"></div>  
+
+<div>
+<hr>
+<form name="addEdEventForm">
+
+<label for="student">Student Name</label>
+<input type="text" name="student"> <br>
+
+<label for="subject">Subject</label>
+<select name="subject">
+<option value="Elective">Elective</option>
+<option value="Language Arts">Language Arts</option>
+<option value="Math">Math</option>
+<option value="Reading">Reading</option>
+<option value="Science">Science</option>
+<option value="Social Studies">Social Studies</option>
+</select> <br>
+
+<label for="date">Date</label>
+<input type="datetime-local" name="date"> <br>
+
+<label for="duration">Duration (minutes)</label>
+<input type="number" name="duration"> <br>
+
+<label for="location">Location</label>
+<input type="text" name="location"> <br>
+
+<label for="notes">Notes</label>
+<textarea rows="4" cols="40" name="notes"></textarea> <br>
+
+<button name="addEdEvent">Record this Event!</button>
+
+</form>
+</div>
+	
  
-<div id="eventList"></div> 
- <!-- Output of search by name -->
- 
-<div id="eventsByName"></div>
- 
- 
- 
- 
+<div id="newEdEvent"></div>
  
  <!-- space for result of search && option to delete && update(?)-->
  
  <!-- Form to create a new event -->
-<div id="createEvent"></div>
+<!-- <div id="createEvent"></div> -->
 
  <!-- Form to update an event -->
  
