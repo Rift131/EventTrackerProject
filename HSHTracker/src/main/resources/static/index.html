@@ -21,14 +21,14 @@
 
 <div>
 <hr>
-<form name="addEdEventForm">
+<form name="addEdEventForm" >
 <h2>Record an Education Event for your Student</h2>
 <label for="student">Student Name</label>
 <input type="text" name="student" id="student" required="required"/> <br>
 
 <label for="subject">Subject</label>
 <select name="subject">
-<option value="Elective">Elective</option>
+<option value="Elective" id="defaultSubject">Elective</option>
 <option value="Language Arts">Language Arts</option>
 <option value="Math">Math</option>
 <option value="Reading">Reading</option>
@@ -46,7 +46,7 @@
 <input type="text" name="location" id="location" required="required"/> <br>
 
 <label for="notes">Notes</label>
-<textarea rows="4" cols="40" name="notes" required="required"></textarea> <br>
+<textarea id="notes" rows="4" cols="40" name="notes" required="required"></textarea> <br>
 <br>
 <button type="submit" id="submit" name="addEdEvent">Record this Event!</button>
 

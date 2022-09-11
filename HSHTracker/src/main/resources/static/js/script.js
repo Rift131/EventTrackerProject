@@ -29,8 +29,9 @@ function init() {
 		// Ensure Minimum Inputs
 		let minDataCk =  verifyMinData(educationEvent.duration, educationEvent.location, educationEvent.student);
 		if(minDataCk.length === 0) {
-			clearErrors();
 			createEventForm(educationEvent);
+			clearErrors();
+			clearForm();
 		} else {
 			
 			let dataDiv = document.getElementById('missingEntries');
@@ -44,14 +45,22 @@ function init() {
 			let reqStudent = document.getElementById('student');
 			if(reqStudent.value === '') {
 				reqStudent.style.border="3px solid red";
-			}
+			} else if (reqStudent.value !== '') {
+			reqStudent.style.border="1px solid black";
+			} 
+			
 			let reqDuration = document.getElementById('duration');
 			if(reqDuration.value === '') {
 				reqDuration.style.border="3px solid red";
+			} else if(reqDuration.value !== '') {
+			reqDuration.style.border="1px solid black";
 			}
+			
 			let reqLocation = document.getElementById('location');
 			if(reqLocation.value === '') {
 				reqLocation.style.border="3px solid red";
+			} else if (reqLocation.value !== '') {
+			reqLocation.style.border="1px solid black";
 			}
 			
 		}
@@ -161,7 +170,7 @@ function getEventsXHR(student) {
 				displayError("A student by that name was not found");
 			} else {
 				displayError("There was a problem with the request: " + xhr.status);
-			}
+			} 
 		};	
 	};
 	xhr.send();
@@ -194,6 +203,37 @@ function clearErrors() {
 	}
 	console.log("Errors removed");
 }
+
+function clearForm() {
+	
+	
+	let reqStudent = document.getElementById('student');
+	if(reqStudent.value !== '') {
+		reqStudent.style.border="1px solid black";
+		}
+
+	let reqDuration = document.getElementById('duration');
+	if(reqDuration.value !== '') {
+		reqDuration.style.border="1px solid black";
+		}
+		
+	let reqLocation = document.getElementById('location');
+	if(reqLocation.value !== '') {
+		reqLocation.style.border="1px solid black";
+		}
+	let cleanName = document.getElementById('student');
+	cleanName.value = '';
+	
+	let cleanDuration = document.getElementById('duration');
+	cleanDuration.value = '';
+	
+	let cleanLocation = document.getElementById('location');
+	cleanLocation.value = '';
+	
+	let cleanNotes = document.getElementById('notes');
+	cleanNotes.value = '';
+}
+
 // DOM Function to display the students list of ed events by student name
 function displayStudentEventsDOM(studentEvents) {
 	console.log("FUNCTION INVOKED: displayStudentEventsDOM");
