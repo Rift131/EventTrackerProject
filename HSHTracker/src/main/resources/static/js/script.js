@@ -117,7 +117,7 @@ function createEventForm(educationEvent) {
 
 // CRUD: RETRIEVE FUNCTIONS
 
-//  FUNCTION TO DISPLAY 
+//  FUNCTION TO DISPLAY NEWLY CREATED EDUCATION EVENT
 
 function displayNewStudentEventDOM(educationEvent) {
 	let dataDiv1 = document.getElementById("newEdEvent");
@@ -175,64 +175,6 @@ function getEventsXHR(student) {
 	};
 	xhr.send();
 	}
-// DISPLAY ERROR FUNCTIONS
-function displayError(msg) {
-	let dataDiv = document.getElementById('eventsByName');
-	dataDiv.textContent = '';
-	dataDiv.textContent = msg;
-}
-
-function displayErrorNewEvent(msg) {
-	let dataDiv = document.getElementById('newEdEvent');
-	dataDiv.textContent = '';
-	dataDiv.textContent = msg;
-}
-
-let verifyMinData = function(duration, location, student) {
-	let errors = [];
-	 if(!duration > 0 || location === '' || student === '') {
-		errors.push("The student name, duration and location fields cannot be blank.")
-	}
-	return errors;
-}	
-
-function clearErrors() {
-	let errors = document.getElementById("missingEntries");
-	while (errors.firstElementChild) {
-		errors.removeChild(errors.firstElementChild);
-	}
-	console.log("Errors removed");
-}
-
-function clearForm() {
-	
-	
-	let reqStudent = document.getElementById('student');
-	if(reqStudent.value !== '') {
-		reqStudent.style.border="1px solid black";
-		}
-
-	let reqDuration = document.getElementById('duration');
-	if(reqDuration.value !== '') {
-		reqDuration.style.border="1px solid black";
-		}
-		
-	let reqLocation = document.getElementById('location');
-	if(reqLocation.value !== '') {
-		reqLocation.style.border="1px solid black";
-		}
-	let cleanName = document.getElementById('student');
-	cleanName.value = '';
-	
-	let cleanDuration = document.getElementById('duration');
-	cleanDuration.value = '';
-	
-	let cleanLocation = document.getElementById('location');
-	cleanLocation.value = '';
-	
-	let cleanNotes = document.getElementById('notes');
-	cleanNotes.value = '';
-}
 
 // DOM Function to display the students list of ed events by student name
 function displayStudentEventsDOM(studentEvents) {
@@ -241,6 +183,7 @@ function displayStudentEventsDOM(studentEvents) {
 	eventsByNameDiv.textContent = '';
 	// Setup of the unordered list with a header of the students name
 	if(studentEvents.length > 0) {
+		
 		// LIST CODE
 			//let ul = document.createElement('ul');
 			//let h3 = document.createElement('h3');
@@ -252,6 +195,7 @@ function displayStudentEventsDOM(studentEvents) {
 					// let li = document.createElement('li');
 					// li.textContent = event.subject + ' ' + event.date + ' ' + event.duration + ' minutes,  ' + event.location + ' ' + event.notes;
 					// ul.appendChild(li);
+		
 		// TABLE CODE
 		let table = document.createElement('table');
 		createTableHead(table, studentEvents);
@@ -316,12 +260,92 @@ let createTableBody = function(table, studentEvents) {
     notes.textContent = studentEvents.notes;
     row.appendChild(notes);
     
+    // Assign a button with an event listener to edit an entry, tied to an update function
+    let editBtn = document.createElement('button');
+    editBtn.type='submit';
+    editBtn.name='edit';
+    editBtn.innerHTML = 'Edit';
+    editBtn.onclick = function(event){
+	console.log("editBtn Function Check");
+	event.preventDefault();
+    
+    
+    updateEdEvent();
+	
+};
+    
+    row.appendChild(editBtn);
+    
+    
     //Append the completed loop before next iteration of the next row
     tbody.appendChild(row);
   });
   
   table.appendChild(tbody);
+  //document.searchByNameForm.eventsByName.edit.addEventListener('click', updateEdEvent);
 }
  // CRUD: UPDATE FUNCTION
- 
+ function updateEdEvent() {
+	console.log("Edit button clicked and function invoked.")
+}
  // CRUD: DELETE FUNCTION
+ 
+ 
+// *******************************ERRORS AND CLEANUP FUNCTIONS********************************************
+function displayError(msg) {
+	let dataDiv = document.getElementById('eventsByName');
+	dataDiv.textContent = '';
+	dataDiv.textContent = msg;
+}
+
+function displayErrorNewEvent(msg) {
+	let dataDiv = document.getElementById('newEdEvent');
+	dataDiv.textContent = '';
+	dataDiv.textContent = msg;
+}
+
+let verifyMinData = function(duration, location, student) {
+	let errors = [];
+	 if(!duration > 0 || location === '' || student === '') {
+		errors.push("The student name, duration and location fields cannot be blank.")
+	}
+	return errors;
+}	
+
+function clearErrors() {
+	let errors = document.getElementById("missingEntries");
+	while (errors.firstElementChild) {
+		errors.removeChild(errors.firstElementChild);
+	}
+	console.log("Errors removed");
+}
+
+function clearForm() {
+	
+	
+	let reqStudent = document.getElementById('student');
+	if(reqStudent.value !== '') {
+		reqStudent.style.border="1px solid black";
+		}
+
+	let reqDuration = document.getElementById('duration');
+	if(reqDuration.value !== '') {
+		reqDuration.style.border="1px solid black";
+		}
+		
+	let reqLocation = document.getElementById('location');
+	if(reqLocation.value !== '') {
+		reqLocation.style.border="1px solid black";
+		}
+	let cleanName = document.getElementById('student');
+	cleanName.value = '';
+	
+	let cleanDuration = document.getElementById('duration');
+	cleanDuration.value = '';
+	
+	let cleanLocation = document.getElementById('location');
+	cleanLocation.value = '';
+	
+	let cleanNotes = document.getElementById('notes');
+	cleanNotes.value = '';
+}
