@@ -115,6 +115,30 @@ function createEventForm(educationEvent) {
 	xhr.send(edEventJson);
 }
 
+function getEducationEventByRow(id) {
+	console.log("EVENT ROW OBJECT: " + id);
+	let xhr = new XMLHttpRequest();
+	let edEvent = xhr.open('GET', `api/edEvents/${id}`);
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState === 4) {
+			console.log("XHR FOR EVENT BY ID: " + xhr.status);
+		if(xhr.status === 200) {
+			console.log("XHR GET EVENT BY ID STATUS CODE 200 G2G.");
+			// display the new record to the user in an unordered list NOTE: used educationEvent as argument to display
+			displayEdEventToEdit(JSON.parse(xhr.responseText));
+		} else if(xhr.status === 400) {
+			displayError("Invalid data" + xhr.status);
+		} else {
+			displayError("Error recording this event: " + xhr.status);
+		}
+	}
+	}
+	// convert to JSON and send new entry to the controller
+	xhr.setRequestHeader("Content-type", "application/json");
+	let singleEdEventJson = JSON.stringify(edEvent);
+	xhr.send(singleEdEventJson);
+}
+
 // CRUD: RETRIEVE FUNCTIONS
 
 //  FUNCTION TO DISPLAY NEWLY CREATED EDUCATION EVENT
@@ -184,28 +208,13 @@ function displayStudentEventsDOM(studentEvents) {
 	// Setup of the unordered list with a header of the students name
 	if(studentEvents.length > 0) {
 		
-		// LIST CODE
-			//let ul = document.createElement('ul');
-			//let h3 = document.createElement('h3');
-			//h3.textContent = "All recorded events for " + studentEvents[0].student; 
-			//eventsByNameDiv.appendChild(h3);
-			//eventsByNameDiv.appendChild(ul);
-			// Iterate over the events and append them to the UL after putting each field into an li
-				//for(let event of studentEvents) {
-					// let li = document.createElement('li');
-					// li.textContent = event.subject + ' ' + event.date + ' ' + event.duration + ' minutes,  ' + event.location + ' ' + event.notes;
-					// ul.appendChild(li);
-		
 		// TABLE CODE
 		let table = document.createElement('table');
 		createTableHead(table, studentEvents);
 		createTableBody(table, studentEvents);
 		eventsByNameDiv.appendChild(table);	
 		}
-		
 	}
-
-
 // FUNCTION FOR THE TABLE HEAD
 let createTableHead = function(table, studentEvents) {
   let thead = document.createElement('thead');
@@ -232,6 +241,7 @@ let createTableBody = function(table, studentEvents) {
     // Assign the id to a column for current row
     let id = document.createElement('td');
     id.textContent = studentEvents.id;
+    let byId = studentEvents.id;
     row.appendChild(id);
     
     // Assign the date to a column for current row
@@ -257,26 +267,21 @@ let createTableBody = function(table, studentEvents) {
     
     // Assign the Notes to a column for current row
     let notes = document.createElement('td');
-    notes.textContent = studentEvents.notes;
-    row.appendChild(notes);
+    		notes.textContent = studentEvents.notes;
+    		row.appendChild(notes);
     
     // Assign a button with an event listener to edit an entry, tied to an update function
     let editBtn = document.createElement('button');
-    editBtn.type='submit';
-    editBtn.name='edit';
-    editBtn.innerHTML = 'Edit';
-    editBtn.onclick = function(event){
-	console.log("editBtn Function Check");
-	event.preventDefault();
-    
-    
-    updateEdEvent();
-	
+   		editBtn.type='submit';
+    		editBtn.name='edit';
+    		editBtn.innerHTML = 'Edit';
+    		editBtn.onclick = function(event){
+		event.preventDefault();
+		
+    		// Send the object to update function
+    		updateEdEvent(byId);
 };
-    
     row.appendChild(editBtn);
-    
-    
     //Append the completed loop before next iteration of the next row
     tbody.appendChild(row);
   });
@@ -284,9 +289,176 @@ let createTableBody = function(table, studentEvents) {
   table.appendChild(tbody);
   //document.searchByNameForm.eventsByName.edit.addEventListener('click', updateEdEvent);
 }
+
+function displayEdEventToEdit(editEvent) {
+	console.log("INSIDE DISPLAY EDEVENT TO EDIT: " + editEvent);
+	let singleEventDiv = document.getElementById('editEvent');
+	singleEventDiv.textContent = '';
+	
+	let br = document.createElement('br');
+	let br1 = document.createElement('br');
+	let br2 = document.createElement('br');
+	let br3 = document.createElement('br');
+	let br4 = document.createElement('br');
+	let br5 = document.createElement('br');
+	let br6 = document.createElement('br');
+	let br7 = document.createElement('br');
+	let br8 = document.createElement('br');
+	
+	let form = document.createElement('form');
+	form.name = "editEventForm";
+	
+	let header = document.createElement('h2');
+	header.textContent = "Edit this Entry";
+	
+	singleEventDiv.appendChild(header);
+	
+	singleEventDiv.appendChild(form);
+	
+	// FORM WITH PREPOPULATED FIELDS
+	let studentNameLabel = document.createElement('label');
+		studentNameLabel.for = "student";
+		studentNameLabel.innerHTML = "Student Name ";
+		form.appendChild(studentNameLabel);
+	let studentNameInput = document.createElement('input');
+		studentNameInput.type = 'text';
+		studentNameInput.name = 'student';
+		studentNameInput.id = 'student';
+		studentNameInput.required = 'required';
+		studentNameInput.value = editEvent.student;
+		form.appendChild(studentNameInput);
+	
+		form.append(br1);
+		
+	let subjectLabel = document.createElement('label');
+		subjectLabel.for = "subject";
+		subjectLabel.innerHTML = "Subject ";
+		form.appendChild(subjectLabel);
+		// Find the option selected
+	let subjectInput = document.createElement('select');
+		subjectInput.name = 'subject';
+		subjectInput.id = 'subjectMain';
+		subjectInput.value = document.querySelector('subjectMain');
+		form.appendChild(subjectInput);
+		console.log("VALUE FROM DROP DOWN SUBJECT: " + subjectInput.value)
+		
+		form.append(br2);
+	
+		let subjectOptionElective = document.createElement('option');
+			subjectOptionElective.innerHTML = "Elective";
+			subjectInput.appendChild(subjectOptionElective);
+		
+		let subjectOptionLanguageArts = document.createElement('option');
+			subjectOptionLanguageArts.innerHTML = "Language Arts";
+			subjectInput.appendChild(subjectOptionLanguageArts);
+		
+		let subjectOptionMath = document.createElement('option');
+			subjectOptionMath.innerHTML = "Math";
+			subjectInput.appendChild(subjectOptionMath);
+		
+		let subjectOptionReading = document.createElement('option');
+			subjectOptionReading.innerHTML = "Reading";
+			subjectInput.appendChild(subjectOptionReading);
+		
+		let subjectOptionScience = document.createElement('option');
+			subjectOptionScience.innerHTML = "Science";
+			subjectInput.appendChild(subjectOptionScience);
+		
+		let subjectOptionSocialStudies = document.createElement('option');
+			subjectOptionSocialStudies.innerHTML = "Social Studies";
+			subjectInput.appendChild(subjectOptionSocialStudies);
+		
+			
+	let dateLabel = document.createElement('label');
+		dateLabel.for = "date";
+		dateLabel.innerHTML = "Date ";
+		form.appendChild(dateLabel);
+	let dateInput = document.createElement('input');
+		dateInput.name = 'date';
+		dateInput.type = 'datetime-local';
+		dateInput.value = editEvent.date;
+		form.appendChild(dateInput);
+		
+		form.append(br3);
+			
+	let durationLabel = document.createElement('label');
+		durationLabel.for = "duration";
+		durationLabel.innerHTML = "Duration (minutes) ";
+		singleEventDiv.appendChild(durationLabel);
+		form.appendChild(durationLabel);
+	let durationInput = document.createElement('input');
+		durationInput.name = 'duration';
+		durationInput.type = 'number';
+		durationInput.value = editEvent.duration;
+		form.appendChild(durationInput);
+		
+		form.append(br4);
+			
+	let locationLabel = document.createElement('label');
+		locationLabel.for = "location";
+		locationLabel.innerHTML = "Location ";
+		form.appendChild(locationLabel);
+	let locationInput = document.createElement('input');
+		locationInput.name = 'location';
+		locationInput.type = 'text';
+		locationInput.value = editEvent.location;
+		form.appendChild(locationInput);
+		
+		form.append(br5);
+			
+	let notesLabel = document.createElement('label');
+		notesLabel.for = "notes";
+		notesLabel.innerHTML = "Notes ";
+		form.appendChild(notesLabel);
+	let notesInput = document.createElement('textArea');
+		notesInput.id = 'notes';
+		notesInput.rows = '4';
+		notesInput.cols = '40';
+		notesInput.name = 'notes';
+		notesInput.value = editEvent.notes;
+		form.appendChild(notesInput);
+		
+		form.append(br6);
+		form.append(br7);
+		
+	let saveBtn = document.createElement('button');
+   		saveBtn.type='submit';
+    		saveBtn.name='save';
+    		saveBtn.innerHTML = 'Save Changes';
+    		saveBtn.onclick = function(event){
+		event.preventDefault();
+		// Verify Any Errors (duration, location, student) and route to function for check
+		let minDataCk =  verifyMinData(durationInput.value, locationInput.value, studentNameInput.value);
+		console.log("UPDATE FORM ERROR STRING: " + minDataCk);
+		// variable representing the updated object
+	
+		editEvent.student = studentNameInput.value;
+		editEvent.subject = subjectInput.value;
+		editEvent.date = dateInput.value;
+		editEvent.duration = durationInput.value;
+		editEvent.location = locationInput.value;
+		editEvent.notes = notesInput.value;
+    		// Save the object (new function or reuse a function?)
+    		//updateEdEvent(byId);
+};
+		form.appendChild(saveBtn);
+		
+		form.append(br8);
+}
+
  // CRUD: UPDATE FUNCTION
- function updateEdEvent() {
-	console.log("Edit button clicked and function invoked.")
+ function updateEdEvent(id) {
+	console.log("Edit button clicked and function invoked.");
+	// Call on an XHR function to route for a display result that populates a div, making a new form appear
+	getEducationEventByRow(id);
+	
+		// append a 'save' button that records the event
+		
+		// make a bulleted list appear of the event with the new changes
+		
+		// clean out the form
+		 
+	
 }
  // CRUD: DELETE FUNCTION
  
@@ -307,7 +479,7 @@ function displayErrorNewEvent(msg) {
 let verifyMinData = function(duration, location, student) {
 	let errors = [];
 	 if(!duration > 0 || location === '' || student === '') {
-		errors.push("The student name, duration and location fields cannot be blank.")
+		errors.push("The student name, duration and location fields cannot be blank. Duration must be greater than 0.")
 	}
 	return errors;
 }	
