@@ -64,31 +64,11 @@ function init() {
 			}
 			
 		}
-		
-});
-// Last curly brace for initialization of forms and buttons
+	});
 }
 // NEW FUNCTION
 
 // ************************************CRUD FUNCTIONS****************************************
-
-// CRUD: CREATE FUNCTIONS
-// function loadNewEvent() {
-	
-	//let xhr = new XMLHttpRequest();
-	//xhr.open("GET", "api/edEvents");
-	//xhr.onreadystatechange = function() {
-		//if(xhr.readyState === 4) {
-			//if(xhr.status === 200) {
-				//displayEventsXHR(JSON.parse(xhr.responseText));
-			//} else {
-				//console.error("Error loading events: " + xhr.status);
-			//}
-		//}
-	//};
-	//xhr.send();
-//}
-
 
 function createEventForm(educationEvent) {
 	console.log("CREATE EVENT FORM: " + educationEvent);
@@ -106,13 +86,39 @@ function createEventForm(educationEvent) {
 		} else {
 			displayError("Error recording this event: " + xhr.status);
 		}
-	}
+		}
 	}
 	// convert to JSON and send new entry to the controller
 	xhr.setRequestHeader("Content-type", "application/json");
 	let edEventJson = JSON.stringify(educationEvent);
 	console.log("SUCCESS: new edEvent sent to the controller");
 	xhr.send(edEventJson);
+}
+
+function updateEventForm(edEvent) {
+	console.log("UPDATE EVENT FORM: " + edEvent);
+	let id = edEvent.id;
+	let xhr = new XMLHttpRequest();
+	xhr.open('PUT', `api/updateEdEvent/${id}`);
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState === 4) {
+			console.log("XHR UPDATE Code is 4?... " + xhr.status);
+		if(xhr.status === 204) {
+			console.log("Ready to invoke display function.");
+			// display the new record to the user in an unordered list NOTE: used educationEvent as argument to display
+			displayUpdatedRecord(JSON.parse(xhr.responseText));
+		} else if(xhr.status === 400) {
+			displayError("Invalid data");
+		} else {
+			displayError("Error recording this event: " + xhr.status);
+		}
+		}
+	}
+	// convert to JSON and send new entry to the controller
+	xhr.setRequestHeader("Content-type", "application/json");
+	let edEventUpdateJson = JSON.stringify(edEvent);
+	console.log("SUCCESS: Updated edEvent sent to the controller");
+	xhr.send(edEventUpdateJson);
 }
 
 function getEducationEventByRow(id) {
@@ -438,14 +444,16 @@ function displayEdEventToEdit(editEvent) {
 		editEvent.duration = durationInput.value;
 		editEvent.location = locationInput.value;
 		editEvent.notes = notesInput.value;
-    		// Save the object (new function or reuse a function?)
-    		//updateEdEvent(byId);
+    		// Send the updated object to an XHR function for the server to receive the data
+    		updateEventForm(editEvent);
 };
 		form.appendChild(saveBtn);
 		
 		form.append(br8);
 }
-
+function displayUpdatedRecord() {
+	console.log("INSIDE DISPLAYUDATEDRECORD FUNCTION")
+}
  // CRUD: UPDATE FUNCTION
  function updateEdEvent(id) {
 	console.log("Edit button clicked and function invoked.");
