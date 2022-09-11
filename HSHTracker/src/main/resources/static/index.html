@@ -10,8 +10,8 @@
 
  <!-- form to search by student name -->
  <form name="searchByNameForm">
- <input type="text" name="student">
- <button name="lookUpName">Find Hours Recorded By Student Name</button>
+ <input type="text" name="student" required="required"/>
+ <button type="submit" name="lookUpName">Find Hours Recorded By Student Name</button>
  </form>
 
 <br>
@@ -24,7 +24,7 @@
 <form name="addEdEventForm">
 <h2>Record an Education Event for your Student</h2>
 <label for="student">Student Name</label>
-<input type="text" name="student" required="required"> <br>
+<input type="text" name="student" id="student" required="required"/> <br>
 
 <label for="subject">Subject</label>
 <select name="subject">
@@ -40,14 +40,14 @@
 <input type="datetime-local" name="date"> <br>
 
 <label for="duration">Duration (minutes)</label>
-<input type="number" name="duration" required="required"> <br>
+<input type="number" name="duration" id="duration" required="required"/> <br>
 
 <label for="location">Location</label>
-<input type="text" name="location" required="required"> <br>
+<input type="text" name="location" id="location" required="required"/> <br>
 
 <label for="notes">Notes</label>
 <textarea rows="4" cols="40" name="notes" required="required"></textarea> <br>
-
+<br>
 <button type="submit" id="submit" name="addEdEvent">Record this Event!</button>
 
 </form>

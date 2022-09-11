@@ -29,14 +29,31 @@ function init() {
 		// Ensure Minimum Inputs
 		let minDataCk =  verifyMinData(educationEvent.duration, educationEvent.location, educationEvent.student);
 		if(minDataCk.length === 0) {
-		createEventForm(educationEvent);
+			clearErrors();
+			createEventForm(educationEvent);
 		} else {
+			
 			let dataDiv = document.getElementById('missingEntries');
+			dataDiv.className = "alert";
+			
 			let errMessage = document.createElement('h3');
 			errMessage.style.color = 'red';
 			errMessage.textContent = minDataCk;
-			alert("The student name, duration and location fields cannot be blank.");
-			clearErrors();
+			dataDiv.appendChild(errMessage);
+			
+			let reqStudent = document.getElementById('student');
+			if(reqStudent.value === '') {
+				reqStudent.style.border="3px solid red";
+			}
+			let reqDuration = document.getElementById('duration');
+			if(reqDuration.value === '') {
+				reqDuration.style.border="3px solid red";
+			}
+			let reqLocation = document.getElementById('location');
+			if(reqLocation.value === '') {
+				reqLocation.style.border="3px solid red";
+			}
+			
 		}
 		
 });
