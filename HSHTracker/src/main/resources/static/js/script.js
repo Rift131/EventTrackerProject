@@ -80,6 +80,7 @@ function createEventForm(educationEvent) {
 		if(xhr.status === 201) {
 			console.log("Ready to invoke display function.");
 			// display the new record to the user in an unordered list NOTE: used educationEvent as argument to display
+			console.log("XHR.RESPONSETEXT: " + xhr.responseText);
 			displayNewStudentEventDOM(JSON.parse(xhr.responseText));
 		} else if(xhr.status === 400) {
 			displayError("Invalid data");
@@ -99,14 +100,16 @@ function updateEventForm(edEvent) {
 	console.log("UPDATE EVENT FORM: " + edEvent);
 	let id = edEvent.id;
 	let xhr = new XMLHttpRequest();
-	xhr.open('PUT', `api/updateEdEvent/${id}`);
+	xhr.open(`PUT`, `api/updateEdEvent/${id}`);
+	console.log("ON READYSTATECHANGE CK: " + xhr.onreadystatechange);
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState === 4) {
-			console.log("XHR UPDATE Code is 4?... " + xhr.status);
 		if(xhr.status === 204) {
+			//xhr.option; 
+			const responseJSON = (JSON.parse(xhr.responseText));
+			debugger;
 			console.log("Ready to invoke display function.");
-			// display the new record to the user in an unordered list NOTE: used educationEvent as argument to display
-			displayUpdatedRecord(JSON.parse(xhr.responseText));
+			displayUpdatedRecord(responseJSON);
 		} else if(xhr.status === 400) {
 			displayError("Invalid data");
 		} else {
@@ -315,7 +318,7 @@ function displayEdEventToEdit(editEvent) {
 	form.name = "editEventForm";
 	
 	let header = document.createElement('h2');
-	header.textContent = "Edit this Entry";
+	header.textContent = "Edit this Record";
 	
 	singleEventDiv.appendChild(header);
 	
@@ -449,17 +452,29 @@ function displayEdEventToEdit(editEvent) {
 };
 		form.appendChild(saveBtn);
 		
+		let deleteBtn = document.createElement('button');
+   		deleteBtn.class='delete';
+    		deleteBtn.name='deleteEdEvent';
+    		deleteBtn.innerHTML = 'Delete';
+    		deleteBtn.onclick = function(event){
+		event.preventDefault();
+		if(confirm(`Delete this eudcation record for ${studentNameInput.value}?`)) {
+			deleteEvent(editEvent);
+		}
+		
+		};
+		form.append(deleteBtn);
 		form.append(br8);
 }
-function displayUpdatedRecord() {
-	console.log("INSIDE DISPLAYUDATEDRECORD FUNCTION")
+function displayUpdatedRecord(jsonText) {
+	console.log("INSIDE DISPLAYUDATEDRECORD FUNCTION" + jsonText);
 }
  // CRUD: UPDATE FUNCTION
  function updateEdEvent(id) {
 	console.log("Edit button clicked and function invoked.");
 	// Call on an XHR function to route for a display result that populates a div, making a new form appear
 	getEducationEventByRow(id);
-	
+	 
 		// append a 'save' button that records the event
 		
 		// make a bulleted list appear of the event with the new changes
@@ -469,9 +484,32 @@ function displayUpdatedRecord() {
 	
 }
  // CRUD: DELETE FUNCTION
+ function deleteEvent(deleteEd) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('DELETE', `api/deleteEdEvent/${deleteEd.id}`);
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState === 4) {
+			console.log("DELETE XHR Code after first if statement: " + xhr.status);
+		if(xhr.status === 204) {
+			console.log("Ready to invoke delete response.");
+			// display the new record to the user in an unordered list NOTE: used educationEvent as argument to display
+			console.log("XHR.RESPONSETEXT: " + xhr.responseText);
+			displayDeletedMsg();
+		} else if(xhr.status === 404) {
+			displayError("ERROR: Event not found.");
+		} else {
+			displayError("Error recording this event: " + xhr.status);
+		}
+		}
+	}
+	// convert to JSON and send new entry to the controller
+	xhr.setRequestHeader("Content-type", "application/json");
+	let edEventDelJson = JSON.stringify(deleteEd);
+	console.log("SUCCESS: new edEvent sent to the controller");
+	xhr.send(edEventDelJson);
+}
  
- 
-// *******************************ERRORS AND CLEANUP FUNCTIONS********************************************
+// *******************************MESSAGES, ERRORS AND CLEANUP FUNCTIONS********************************************
 function displayError(msg) {
 	let dataDiv = document.getElementById('eventsByName');
 	dataDiv.textContent = '';
@@ -528,4 +566,11 @@ function clearForm() {
 	
 	let cleanNotes = document.getElementById('notes');
 	cleanNotes.value = '';
+}
+
+function displayDeletedMsg() {
+	//let confirmDeletedDiv = document.getElementById('recordRemoval');
+	//confirmDeletedDiv.textContent = '';
+	//confirmDeletedDiv.textContent = "The record has been removed."
+	
 }

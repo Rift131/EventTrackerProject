@@ -89,6 +89,7 @@ public class EducationEventController {
 			e.printStackTrace();
 			resp.setStatus(400);
 		}
+		System.out.println("NEW EVENT: " + addEd);
 		return addEd;
 	}
 
@@ -96,6 +97,7 @@ public class EducationEventController {
 	public EducationEvent updateEdEvent(@RequestBody EducationEvent edEvent, @PathVariable int id,
 			HttpServletResponse resp) {
 		EducationEvent updated = null;
+		//edEvent.id = id;
 
 		try {
 			updated = svc.updateEdEvent(edEvent, id);
@@ -113,6 +115,7 @@ public class EducationEventController {
 		boolean deleted = false;
 		EducationEvent edEventToDelete = svc.edEventById(id);
 		if (edEventToDelete != null) {
+			resp.setStatus(204);
 			svc.deleteEdEvent(id);
 			deleted = true;
 		} else {
