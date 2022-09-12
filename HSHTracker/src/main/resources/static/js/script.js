@@ -66,9 +66,8 @@ function init() {
 		}
 	});
 }
-// NEW FUNCTION
 
-// ************************************CRUD FUNCTIONS****************************************
+// ************************************CRUD: CREATE FUNCTIONS****************************************
 
 function createEventForm(educationEvent) {
 	console.log("CREATE EVENT FORM: " + educationEvent);
@@ -96,35 +95,6 @@ function createEventForm(educationEvent) {
 	xhr.send(edEventJson);
 }
 
-function updateEventForm(edEvent) {
-	console.log("UPDATE EVENT FORM: " + edEvent);
-	let id = edEvent.id;
-	let xhr = new XMLHttpRequest();
-	xhr.open(`PUT`, `api/updateEdEvent/${id}`);
-	console.log("ON READYSTATECHANGE CK: " + xhr.onreadystatechange);
-	xhr.onreadystatechange = function() {
-		if(xhr.readyState === 4) {
-			console.log(xhr.status);
-		if(xhr.status === 204) {
-			// const responseJSON = (JSON.parse(xhr.responseText));
-			// debugger;
-			// displayUpdatedRecord();
-			let updateG2G = "The record has been updated!";
-			alert(updateG2G);
-		} else if(xhr.status === 400) {
-			displayError("Invalid data");
-		} else {
-			displayError("Error recording this event: " + xhr.status);
-		}
-		}
-	}
-	// convert to JSON and send new entry to the controller
-	xhr.setRequestHeader("Content-type", "application/json");
-	let edEventUpdateJson = JSON.stringify(edEvent);
-	console.log("SUCCESS: Updated edEvent sent to the controller");
-	xhr.send(edEventUpdateJson);
-}
-
 function getEducationEventByRow(id) {
 	console.log("EVENT ROW OBJECT: " + id);
 	let xhr = new XMLHttpRequest();
@@ -149,7 +119,7 @@ function getEducationEventByRow(id) {
 	xhr.send(singleEdEventJson);
 }
 
-// CRUD: RETRIEVE FUNCTIONS
+// *******************************CRUD: RETRIEVE FUNCTIONS*******************************
 
 //  FUNCTION TO DISPLAY NEWLY CREATED EDUCATION EVENT
 
@@ -188,9 +158,6 @@ function displayNewStudentEventDOM(educationEvent) {
 	document.body.appendChild(ul);
 }
 
-
-// XHR GET
-// The parameter to the function MATTERS, it must match the Div Id
 function getEventsXHR(student) {
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', `api/edEventsStudent/${student}`);
@@ -225,72 +192,74 @@ function displayStudentEventsDOM(studentEvents) {
 		eventsByNameDiv.appendChild(table);	
 		}
 	}
-// FUNCTION FOR THE TABLE HEAD
-let createTableHead = function(table, studentEvents) {
-  let thead = document.createElement('thead');
-  let trow = document.createElement('tr');
-  for (property in studentEvents[0]) {
-	if(property !== 'student') {
-    let th = document.createElement('th');
-    th.textContent = property.toUpperCase();
-    trow.appendChild(th);
-    }
-  }
-  thead.appendChild(trow);
-  table.appendChild(thead);
-}
+	// FUNCTION FOR THE TABLE HEAD
+	let createTableHead = function(table, studentEvents) {
+  		let thead = document.createElement('thead');
+  		let trow = document.createElement('tr');
+  		for (property in studentEvents[0]) {
+			if(property !== 'student') {
+    				let th = document.createElement('th');
+    				th.textContent = property.toUpperCase();
+    				trow.appendChild(th);
+    			}
+  		}
+  		thead.appendChild(trow);
+  		table.appendChild(thead);
+	 }
 
-// FUNCTION FOR TABLE BODY
-let createTableBody = function(table, studentEvents) {
-  let tbody = document.createElement('tbody');
-  // iterate to fill out each row
-  studentEvents.forEach(function(studentEvents) {
-	// Establish a row to populate for the current iteration
-    let row = document.createElement('tr');
+	// FUNCTION FOR TABLE BODY
+	let createTableBody = function(table, studentEvents) {
+  		let tbody = document.createElement('tbody');
+  		// iterate to fill out each row
+  		studentEvents.forEach(function(studentEvents) {
+		// Establish a row to populate for the current iteration
+    		let row = document.createElement('tr');
     
-    // Assign the id to a column for current row
-    let id = document.createElement('td');
-    id.textContent = studentEvents.id;
-    let byId = studentEvents.id;
-    row.appendChild(id);
+    		// Assign the id to a column for current row
+    		let id = document.createElement('td');
+   			id.textContent = studentEvents.id;
+    			row.appendChild(id);
+    		
+    		let byId = studentEvents.id;
     
-    // Assign the date to a column for current row
-    let date = document.createElement('td');
-    date.textContent = studentEvents.date;
-    row.appendChild(date);
+    		// Assign the date to a column for current row
+    		let date = document.createElement('td');
+    			date.textContent = studentEvents.date;
+    			row.appendChild(date);
 
 
-    // Assign the Duration to a column for current row
-    let duration = document.createElement('td');
-    duration.textContent = studentEvents.duration + " mins";
-    row.appendChild(duration);
+    		// Assign the Duration to a column for current row
+    		let duration = document.createElement('td');
+    			duration.textContent = studentEvents.duration + " mins";
+    			row.appendChild(duration);
    
-    // Assign the Subject to a column for current row
-    let subject = document.createElement('td');
-    subject.textContent = studentEvents.subject;
-    row.appendChild(subject);
+    		// Assign the Subject to a column for current row
+    		let subject = document.createElement('td');
+    			subject.textContent = studentEvents.subject;
+    			row.appendChild(subject);
 
-    // Assign the Location to a column for current row
-    let location = document.createElement('td');
-    location.textContent = studentEvents.location;
-    row.appendChild(location);
+    		// Assign the Location to a column for current row
+    		let location = document.createElement('td');
+    			location.textContent = studentEvents.location;
+    			row.appendChild(location);
     
-    // Assign the Notes to a column for current row
-    let notes = document.createElement('td');
-    		notes.textContent = studentEvents.notes;
-    		row.appendChild(notes);
+    		// Assign the Notes to a column for current row
+    		let notes = document.createElement('td');
+    			notes.textContent = studentEvents.notes;
+    			row.appendChild(notes);
     
-    // Assign a button with an event listener to edit an entry, tied to an update function
-    let editBtn = document.createElement('button');
-   		editBtn.type='submit';
-    		editBtn.name='edit';
-    		editBtn.innerHTML = 'Edit';
-    		editBtn.onclick = function(event){
-		event.preventDefault();
+    		// Assign a button with an event listener to edit an entry, tied to an update function
+    		let editBtn = document.createElement('button');
+   			editBtn.type='submit';
+    			editBtn.name='edit';
+    			editBtn.innerHTML = 'Edit';
+    			editBtn.onclick = function(event){
+			event.preventDefault();
 		
     		// Send the object to update function
     		updateEdEvent(byId);
-};
+	};
+	
     row.appendChild(editBtn);
     //Append the completed loop before next iteration of the next row
     tbody.appendChild(row);
@@ -298,6 +267,54 @@ let createTableBody = function(table, studentEvents) {
   
   table.appendChild(tbody);
   //document.searchByNameForm.eventsByName.edit.addEventListener('click', updateEdEvent);
+}
+
+
+
+function displayUpdatedRecord(jsonText) {
+	// STRETCH: Functionality after passing jsonText blocker or another route created (find by id)
+	console.log("INSIDE DISPLAYUDATEDRECORD FUNCTION" + jsonText);
+}
+
+ // *******************************CRUD: UPDATE FUNCTIONS*******************************
+ function updateEdEvent(id) {
+	console.log("Edit button clicked and function invoked.");
+	// Call on an XHR function to route for a display result that populates a div, making a new form appear
+	getEducationEventByRow(id);
+	 
+		// STRETCH: make a bulleted list appear of the event with the new changes
+		
+		// STRETCH: clean out the form
+	
+}
+
+function updateEventForm(edEvent) {
+	console.log("UPDATE EVENT FORM: " + edEvent);
+	let id = edEvent.id;
+	let xhr = new XMLHttpRequest();
+	xhr.open(`PUT`, `api/updateEdEvent/${id}`);
+	console.log("ON READYSTATECHANGE CK: " + xhr.onreadystatechange);
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState === 4) {
+			console.log(xhr.status);
+		if(xhr.status === 204) {
+			// const responseJSON = (JSON.parse(xhr.responseText));
+			// debugger;
+			// displayUpdatedRecord();
+			let updateG2G = "The record has been updated!";
+			alert(updateG2G);
+		} else if(xhr.status === 400) {
+			displayError("Invalid data");
+		} else {
+			displayError("Error recording this event: " + xhr.status);
+		}
+		}
+	}
+	// convert to JSON and send new entry to the controller
+	xhr.setRequestHeader("Content-type", "application/json");
+	let edEventUpdateJson = JSON.stringify(edEvent);
+	console.log("SUCCESS: Updated edEvent sent to the controller");
+	xhr.send(edEventUpdateJson);
 }
 
 function displayEdEventToEdit(editEvent) {
@@ -325,7 +342,7 @@ function displayEdEventToEdit(editEvent) {
 	
 	singleEventDiv.appendChild(form);
 	
-	// FORM WITH PREPOPULATED FIELDS
+	// FORM WITH PREPOPULATED FIELDS 
 	let studentNameLabel = document.createElement('label');
 		studentNameLabel.for = "student";
 		studentNameLabel.innerHTML = "Student Name ";
@@ -459,6 +476,7 @@ function displayEdEventToEdit(editEvent) {
     		deleteBtn.innerHTML = 'Delete';
     		deleteBtn.onclick = function(event){
 		event.preventDefault();
+		// Ensure the user wants to delete before performing backend functionality
 		if(confirm(`Delete this eudcation record for ${studentNameInput.value}?`)) {
 			deleteEvent(editEvent);
 		}
@@ -467,24 +485,8 @@ function displayEdEventToEdit(editEvent) {
 		form.append(deleteBtn);
 		form.append(br8);
 }
-function displayUpdatedRecord(jsonText) {
-	console.log("INSIDE DISPLAYUDATEDRECORD FUNCTION" + jsonText);
-}
- // CRUD: UPDATE FUNCTION
- function updateEdEvent(id) {
-	console.log("Edit button clicked and function invoked.");
-	// Call on an XHR function to route for a display result that populates a div, making a new form appear
-	getEducationEventByRow(id);
-	 
-		// append a 'save' button that records the event
-		
-		// make a bulleted list appear of the event with the new changes
-		
-		// clean out the form
-		 
-	
-}
- // CRUD: DELETE FUNCTION
+
+ // *******************************CRUD: DELETE FUNCTION*******************************
  function deleteEvent(deleteEd) {
 	let xhr = new XMLHttpRequest();
 	xhr.open('DELETE', `api/deleteEdEvent/${deleteEd.id}`);
