@@ -318,6 +318,7 @@ function updateEventForm(edEvent) {
 }
 
 function displayEdEventToEdit(editEvent) {
+	// TO-DO: VERIFY THE UPDATES AS VALID FOR THE REQUIRED FIELDS, MAKE THE FORM GO AWAY ON SUBMISSION, PRESENT THE USER WITH A UL SHOWING THE UPDATED FILE AND AN OK BUTTON TO MAKE THE INFO DISSAPEAR
 	console.log("INSIDE DISPLAY EDEVENT TO EDIT: " + editEvent);
 	let singleEventDiv = document.getElementById('editEvent');
 	singleEventDiv.textContent = '';
