@@ -95,7 +95,7 @@ This project proved vital in gaining the following experience...
 * The requirement for Controllers to use wrapper classes in order to function
 * The use of the @CreationTimestamp greatly simplifies the use of LocalDateTime fields
 * The use of Postman for testing code and correlating the direct relationship of the URL to the methods as well as further verification of changes through writing SQL queries to the database in the zsh Terminal.
-* The creation of HTML elements through the DOM was especially insightful for ensuring the page only presents data when it's asked for
+* The creation of HTML elements through the DOM was especially insightful for ensuring the page only presents data when it's asked for. This code is especially verbose and requires the use of commments to assist in the organization of the many functions.
 
 
 ## Technologies 
