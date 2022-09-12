@@ -145,6 +145,6 @@ After careful consideration of all the desired functionality with my wife has be
 
  <p align="center"><img src="media/codeControllerDelete.png" width="350"></p>
  
-* Example code excerpt showing the verboseness of using vanilla Javascript to tie the backend to the frontend. 
+* Example code excerpt showing the verboseness of using vanilla Javascript to tie the backend to the frontend. This excerpt uses the DOM to populate the HTML file with a pre-populated form for the user to perform updates to a record and continues past what you see here. 
 
  <p align="center"><img src="media/vanillaJSExample.png" width="350"></p>
