@@ -29,21 +29,23 @@ This application will provide our family and fellow Missouri parents with a solu
 
 If you would like to visit the Education Event tracker site, please feel free to use the link below! Reference the table within the "Testing With Postman" section below for example URI's you can use to interact with the applications backend functionality. If you have any questions or would like to discuss this project, please don't hesitate to email me at ken@kendev131.com. 
 
-<p align="center"><a href="http://3.21.142.131:8080/HSHTracker">(PLACEHOLDER ->)Click Here to Visit Homeschool Hours Tracker Project Site</a></>
+<p align="center"><a href="http://3.21.142.131:8080/HSHTracker">Click Here to Visit Homeschool Hours Tracker Project Site</a></>
 
 ## Description
 
 The first iteration of this application is an extremely simplified approach of using only one table in the database. Multiple other tables, though not initially implemented, were created to enable greater functionality at a later time.
 
-In this first version, the backend has been created using REST and thoroughly tested using Postman to ensure URL's invoke the desired results.
+In this first version, the backend has been created using REST and thoroughly tested using Postman to ensure URL's invoke the desired results. THe frontend has been built, initially, with vanilla Javascript to link the backend with the frontend. 
 
 ## Methodology
 
 One pillar at a time.
 
-What I enjoyed most about this stage of building the application is the very straight forward approach of building the backend from "the ground up". Each functionality "pillar" began with the Repository (where applicable), then the Service layer, the Service Implementation layer, next the Controller and finally using Postman to prove functionality. No other functionality was started until the current capability proved successful. This approach kept each stage of functionality development clear and distinct from the others, thereby preventing getting "lost in the sauce" and ensuring troubleshooting was straight forward.
+What I enjoyed most about the backend-building stage the application is the very straight forward approach of building the backend from "the ground up". Each functionality "pillar" began with the Repository (where applicable), then the Service layer, the Service Implementation layer, next the Controller and finally using Postman to prove functionality. No other functionality was started until the current capability proved successful. This approach kept each stage of functionality development clear and distinct from the others, thereby preventing getting "lost in the sauce" and ensuring troubleshooting was straight forward.
 
-## Testing With Postman
+The frontend required a disciplined approach of organization. The vanilla JavaScript file used for the DOM was divided into sections based on initialization and CRUD to ensure easier navigation. My desire would be to break up these functions across several JavaScript files but givent the short amount of time to develop this stage of the project, everything was kept in one place for simplicity. Angular is the final stage of this projects development and I look forward to what it will present for options that reduce the robustness of the vanill JavaScript code.
+
+## Testing the Backend With Postman
 
 <p align="center"><img src="media/postman.png" width="450"></p>
 
@@ -93,6 +95,8 @@ This project proved vital in gaining the following experience...
 * The requirement for Controllers to use wrapper classes in order to function
 * The use of the @CreationTimestamp greatly simplifies the use of LocalDateTime fields
 * The use of Postman for testing code and correlating the direct relationship of the URL to the methods as well as further verification of changes through writing SQL queries to the database in the zsh Terminal.
+* The creation of HTML elements through the DOM was especially insightful for ensuring the page only presents data when it's asked for
+
 
 ## Technologies 
 
@@ -102,8 +106,10 @@ This project proved vital in gaining the following experience...
 * GitHub
 * Gradle
 * Java 
+* JavaScript (DOM)
 * MySQL Workbench
 * Postman
+* RESTful Services
 * SpringToolSuite4
 * Spring Data JPA
 * Spring Boot
@@ -120,7 +126,8 @@ After a minimum viable product is produced, the intent for this application is t
 * Allow users to download an Excel or Numbers version of their data as a backup or for audit purposes
 * Create charts and graphs that show progress over time through each grade year
 * Allow for tracking of resources used to teach different subjects across each grade
-* USe the application as a centerpiece for a homeschool forum
+* Use the application as a centerpiece for a homeschool forum
+* The final HTML file should be extremely limited with only the options to view the different data presented. Once viewed, each resulting data field should be closable to ensure minimal clutter.
 
 After careful consideration of all the desired functionality with my wife has been made, work will begin on a separate branch while retaining the original work. 
 
@@ -137,3 +144,7 @@ After careful consideration of all the desired functionality with my wife has be
 * Code excerpt of how an event is deleted and ensuring a 404 code is returned when the event being referred to no longer exists.
 
  <p align="center"><img src="media/codeControllerDelete.png" width="350"></p>
+ 
+* Example code excerpt showing the verboseness of using vanilla Javascript to tie the backend to the frontend. 
+
+ <p align="center"><img src="media/vanillaJSExample.png" width="350"></p>
