@@ -104,12 +104,13 @@ function updateEventForm(edEvent) {
 	console.log("ON READYSTATECHANGE CK: " + xhr.onreadystatechange);
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState === 4) {
+			console.log(xhr.status);
 		if(xhr.status === 204) {
-			//xhr.option; 
-			const responseJSON = (JSON.parse(xhr.responseText));
-			debugger;
-			console.log("Ready to invoke display function.");
-			displayUpdatedRecord(responseJSON);
+			// const responseJSON = (JSON.parse(xhr.responseText));
+			// debugger;
+			// displayUpdatedRecord();
+			let updateG2G = "The record has been updated!";
+			alert(updateG2G);
 		} else if(xhr.status === 400) {
 			displayError("Invalid data");
 		} else {
@@ -490,11 +491,9 @@ function displayUpdatedRecord(jsonText) {
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState === 4) {
 			console.log("DELETE XHR Code after first if statement: " + xhr.status);
-		if(xhr.status === 204) {
-			console.log("Ready to invoke delete response.");
+		if(xhr.status === 204 || 200) {
 			// display the new record to the user in an unordered list NOTE: used educationEvent as argument to display
-			console.log("XHR.RESPONSETEXT: " + xhr.responseText);
-			displayDeletedMsg();
+			alert("The record has been deleted.");
 		} else if(xhr.status === 404) {
 			displayError("ERROR: Event not found.");
 		} else {
@@ -568,9 +567,3 @@ function clearForm() {
 	cleanNotes.value = '';
 }
 
-function displayDeletedMsg() {
-	//let confirmDeletedDiv = document.getElementById('recordRemoval');
-	//confirmDeletedDiv.textContent = '';
-	//confirmDeletedDiv.textContent = "The record has been removed."
-	
-}
