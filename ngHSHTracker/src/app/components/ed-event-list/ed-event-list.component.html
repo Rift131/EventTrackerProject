@@ -1,0 +1,36 @@
+<h1>{{ title }}</h1>
+<!-- Options at top of screen: search by name and create new event -->
+<button class="btn btn-outline-success" (click)="displayEdEventsTable()">
+  Search By Student Name
+</button>
+<input type="text" name="studentsearch" />
+
+<div id="addNewEdEventOption">
+  <button class="btn btn-outline-success" (click)="createEdEvent()">
+    Add New Event Hours
+  </button>
+</div>
+
+<div id="lookUpByNameList" *ngIf="showListSwitch">
+  <!-- List content for events by student name -->
+</div>
+
+<div id="createNewEdEvent" *ngIf="showCreateNewEventSwitch">
+  <!-- menu for creating a new event -->
+</div>
+
+<div id="showUpdateMenu" *ngIf="showUpdateSwitch">
+  <!-- update menu prepopulated with current information and buttons to save, cancel and delete. SAVE will invoke a propmt to display the newly created record and a confirmation button-->
+</div>
+
+<div id="saveEdEventConfirm" *ngIf="showUpdatedConfirmSwitch">
+  <!-- display the updated record with a button to confirm saving the information of canceling -->
+</div>
+
+<div id="confirmDelete" *ngIf="showDeletedConfirmSwitch">
+  <!-- display a question asking user to confirm with options to cancel or confirm -->
+</div>
+
+<div id="deleteConfirmed" *ngIg="showDeleteConfirmedSwitch">
+  <!-- display confirmation the record was deleted with an ok button -->
+</div>
