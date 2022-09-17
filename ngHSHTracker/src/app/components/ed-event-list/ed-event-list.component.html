@@ -1,13 +1,13 @@
 <h1>{{ title }}</h1>
 <!-- Options at top of screen: search by name and create new event -->
-<button class="btn btn-outline-success" (click)="displayEdEventsTable()">
+<button class="btn btn-outline-success" (click)="switchList()">
   Search By Student Name
 </button>
 <input type="text" name="studentsearch" />
 
 <div id="addNewEdEventOption">
-  <button class="btn btn-outline-success" (click)="createEdEvent()">
-    Add New Event Hours
+  <button class="btn btn-outline-success" (click)="switchCreateNew()">
+    Add New Education Event
   </button>
 </div>
 
@@ -15,8 +15,84 @@
   <!-- List content for events by student name -->
 </div>
 
-<div id="createNewEdEvent" *ngIf="showCreateNewEventSwitch">
+<div
+  id="createNewEdEvent"
+  *ngIf="showCreateNewEventSwitch"
+  ng-controller="createEdEventController"
+  ng-app="app"
+>
   <!-- menu for creating a new event -->
+  <br />
+  <form name="createEdEventForm" class="css-form" novalidate>
+    <label for="studentName"
+      >Student Name
+      <input
+        type="text"
+        name="studentName"
+        [(ngModel)]="newEdEvent.student"
+        required
+    /></label>
+    <br />
+    <label for="Date">Date </label>
+    <input
+      type="datetime-local"
+      name="Date"
+      [(ngModel)]="newEdEvent.date"
+    /><br />
+    <label for="subject"
+      >Subject
+      <select name="subject">
+        <option for="subject" value="Elective" id="defaultSubject">
+          Elective
+        </option>
+        <option for="subject" value="Language Arts">Language Arts</option>
+        <option for="subject" value="Math">Math</option>
+        <option for="subject" value="Reading">Reading</option>
+        <option for="subject" value="Science">Science</option>
+        <option for="subject" value="Social Studies">Social Studies</option>
+      </select></label
+    ><br />
+    <label for="duration">Duration (minutes) </label>
+    <input
+      type="text"
+      name="duration"
+      [(ngModel)]="newEdEvent.duration"
+    /><br />
+    <label for="location">Location </label>
+    <input
+      type="blockquote"
+      name="location"
+      [(ngModel)]="newEdEvent.location"
+    /><br />
+    <label for="notes">Notes </label>
+    <input type="textarea" name="notes" [(ngModel)]="newEdEvent.notes" /><br />
+    <button
+      class="btn btn-outline-success"
+      type="submit"
+      (click)="[createEdEvent(), switchConfirmCreateNew(), switchCreateNew()]"
+    >
+      Save
+    </button>
+  </form>
+</div>
+
+<div id="ConfirmNewEdEvent" *ngIf="showConfirmCreateNewSwitch">
+  <!-- pop-up message confirming the new record -->
+  <br />
+  <h4>Your record has been saved!</h4>
+  <br />
+  <button
+    class="btn btn-outline-secondary"
+    (click)="[switchConfirmCreateNew()]"
+  >
+    Back to HSH
+  </button>
+  <button
+    class="btn btn-outline-success"
+    (click)="[switchConfirmCreateNew(), switchCreateNew()]"
+  >
+    Record Another Education Event
+  </button>
 </div>
 
 <div id="showUpdateMenu" *ngIf="showUpdateSwitch">
@@ -31,6 +107,13 @@
   <!-- display a question asking user to confirm with options to cancel or confirm -->
 </div>
 
-<div id="deleteConfirmed" *ngIg="showDeleteConfirmedSwitch">
+<div id="deleteConfirmed" *ngIf="showDeleteConfirmedSwitch">
   <!-- display confirmation the record was deleted with an ok button -->
 </div>
+
+<script>
+  var app = angular.module("app", []);
+  app.controller("myCtrl", function ($scope) {
+    $scope.Name = "";
+  });
+</script>

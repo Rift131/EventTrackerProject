@@ -14,7 +14,7 @@ export class EdEventService {
   constructor(private http: HttpClient, private datePipe: DatePipe) {}
 
   index() {
-    return this.http.get<EdEvent[]>(this.url + '/edEvents').pipe(
+    return this.http.get<EdEvent[]>(this.baseUrl + '/edEvents').pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

@@ -18,6 +18,7 @@ export class EdEventListComponent implements OnInit {
   edEvents: EdEvent[] = [];
   showListSwitch: boolean = false;
   showCreateNewEventSwitch: boolean = false;
+  showConfirmCreateNewSwitch: boolean = false;
   showUpdateSwitch: boolean = false;
   showUpdatedConfirmSwitch: boolean = false;
   showDeletedConfirmSwitch: boolean = false;
@@ -32,7 +33,55 @@ export class EdEventListComponent implements OnInit {
   ngOnInit(): void {
     this.reload();
   }
-
+  switchList() {
+    if (this.showListSwitch) {
+      this.showListSwitch = false;
+    } else {
+      this.showListSwitch = true;
+    }
+  }
+  switchCreateNew() {
+    if (this.showCreateNewEventSwitch) {
+      this.showCreateNewEventSwitch = false;
+    } else {
+      this.showCreateNewEventSwitch = true;
+    }
+  }
+  switchConfirmCreateNew() {
+    if (this.showConfirmCreateNewSwitch) {
+      this.showConfirmCreateNewSwitch = false;
+    } else {
+      this.showConfirmCreateNewSwitch = true;
+    }
+  }
+  switchUpdate() {
+    if (this.showUpdateSwitch) {
+      this.showUpdateSwitch = false;
+    } else {
+      this.showUpdateSwitch = true;
+    }
+  }
+  switchUpdateConfirm() {
+    if (this.showUpdatedConfirmSwitch) {
+      this.showUpdatedConfirmSwitch = false;
+    } else {
+      this.showUpdatedConfirmSwitch = true;
+    }
+  }
+  switchDeleteLastChance() {
+    if (this.showDeletedConfirmSwitch) {
+      this.showDeletedConfirmSwitch = false;
+    } else {
+      this.showDeletedConfirmSwitch = true;
+    }
+  }
+  switchDeleteConfirm() {
+    if (this.showDeleteConfirmedSwitch) {
+      this.showDeleteConfirmedSwitch = false;
+    } else {
+      this.showDeleteConfirmedSwitch = true;
+    }
+  }
   // Method for populating the todos variable with the required data for all other functions
   reload() {
     this.edEventService.index().subscribe({
@@ -40,7 +89,7 @@ export class EdEventListComponent implements OnInit {
         this.edEvents = data;
       },
       error: (err) => {
-        console.error('TodoListComponent.reload(): error loading todos:');
+        console.error('EdEventComponent.reload(): error loading EdEvents:');
         console.error(err);
       },
     });
@@ -49,10 +98,14 @@ export class EdEventListComponent implements OnInit {
   // CRUD FUNCTIONALITY
   //**********CREATE**********/
   createEdEvent() {
+    // validate complete data before invoking the create function on the backend
+
     this.edEventService.create(this.newEdEvent).subscribe({
       next: (data) => {
-        this.newEdEvent = new EdEvent();
-        this.reload();
+        if (this.showConfirmCreateNewSwitch) {
+          this.newEdEvent = new EdEvent();
+          this.reload();
+        }
       },
       error: (err) => {
         console.error('TodoListComponent.create(): error creating todo:');
