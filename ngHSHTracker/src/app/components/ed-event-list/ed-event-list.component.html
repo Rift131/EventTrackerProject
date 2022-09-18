@@ -190,14 +190,37 @@
   >
     Cancel
   </button>
+  <button
+    class="btn btn-outline-danger"
+    type="button"
+    (click)="switchDeleteLastChance()"
+  >
+    Delete
+  </button>
 </form>
 
 <div id="saveEdEventConfirm" *ngIf="showUpdatedConfirmSwitch">
   <!-- display the updated record with a button to confirm saving the information of canceling -->
 </div>
-
-<div id="confirmDelete" *ngIf="showDeletedConfirmSwitch">
-  <!-- display a question asking user to confirm with options to cancel or confirm -->
+<!-- display a question asking user to confirm with options to cancel or confirm -->
+<div *ngIf="showDeletedConfirmSwitch && editEdEvent">
+  <form>
+    <h4>Please confirm: delete this record?</h4>
+    <button
+      class="btn btn-outline-success"
+      type="button"
+      (click)="editEdEventToNull()"
+    >
+      Cancel
+    </button>
+    <button
+      class="btn btn-outline-danger"
+      type="button"
+      (click)="deleteEdEvent(editEdEvent.id)"
+    >
+      Delete
+    </button>
+  </form>
 </div>
 
 <div id="deleteConfirmed" *ngIf="showDeleteConfirmedSwitch">

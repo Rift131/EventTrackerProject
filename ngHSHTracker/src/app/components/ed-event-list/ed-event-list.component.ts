@@ -143,7 +143,7 @@ export class EdEventListComponent implements OnInit {
     // });
   }
   //**********DELETE**********
-  deleteTodo(id: number) {
+  deleteEdEvent(id: number) {
     this.edEventService.destroy(id).subscribe({
       next: () => {
         this.reload();
@@ -206,9 +206,7 @@ export class EdEventListComponent implements OnInit {
     }
   }
   switchDeleteLastChance() {
-    if (this.showDeletedConfirmSwitch) {
-      this.showDeletedConfirmSwitch = false;
-    } else {
+    if (!this.showDeletedConfirmSwitch) {
       this.showDeletedConfirmSwitch = true;
     }
   }
