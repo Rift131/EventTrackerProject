@@ -16,6 +16,8 @@ export class EdEventListComponent implements OnInit {
   newEdEvent: EdEvent = new EdEvent();
   editEdEvent: EdEvent | null = null;
   edEvents: EdEvent[] = [];
+  allEdEvents: EdEvent[] = [];
+  student: string = '';
   showListSwitch: boolean = false;
   showCreateNewEventSwitch: boolean = false;
   showConfirmCreateNewSwitch: boolean = false;
@@ -86,7 +88,7 @@ export class EdEventListComponent implements OnInit {
   reload() {
     this.edEventService.index().subscribe({
       next: (data) => {
-        this.edEvents = data;
+        this.allEdEvents = data;
       },
       error: (err) => {
         console.error('EdEventComponent.reload(): error loading EdEvents:');
@@ -114,12 +116,24 @@ export class EdEventListComponent implements OnInit {
     });
   }
   //**********RETRIEVE********
-  displayEdEvent(edEvent: EdEvent) {
-    this.selected = edEvent;
+  displayEdEventsTableByStudentName() {
+    this.edEventService.byName(this.student).subscribe({
+      next: (data) => {
+        this.edEvents = data;
+        this.editEdEvent = null;
+        this.reload();
+      },
+      error: (err) => {
+        console.error(
+          'EdEventListComponent.displayEdEventsTable(): error retrieving ed events by name:'
+        );
+        console.error(err);
+      },
+    });
   }
 
-  displayEdEventsTable() {
-    this.selected = null;
+  displayEdEvent(edEvent: EdEvent) {
+    this.selected = edEvent;
   }
   //**********UPDATE**********
   setEditEdEvent() {

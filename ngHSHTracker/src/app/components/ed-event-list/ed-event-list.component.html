@@ -1,9 +1,15 @@
 <h1>{{ title }}</h1>
 <!-- Options at top of screen: search by name and create new event -->
-<button class="btn btn-outline-success" (click)="switchList()">
-  Search By Student Name
-</button>
-<input type="text" name="studentsearch" />
+<form (submit)="displayEdEventsTableByStudentName()">
+  <button
+    type="submit"
+    class="btn btn-outline-success"
+    (click)="[switchList()]"
+  >
+    Search By Student Name
+  </button>
+  <input type="text" name="studentsearch" [(ngModel)]="student" />
+</form>
 
 <div id="addNewEdEventOption">
   <button class="btn btn-outline-success" (click)="switchCreateNew()">
@@ -13,6 +19,24 @@
 
 <div id="lookUpByNameList" *ngIf="showListSwitch">
   <!-- List content for events by student name -->
+  <table class="table table-striped table-hover table-borderless">
+    <thead>
+      <th scope="col">Subject</th>
+      <th scope="col">Date</th>
+      <th scope="col">Duration (minutes)</th>
+      <th scope="col">Location</th>
+      <th scope="col">Notes</th>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr *ngFor="let ed of edEvents">
+        <td>{{ ed.subject }}</td>
+        <td>{{ ed.date }}</td>
+        <td>{{ ed.duration }}</td>
+        <td>{{ ed.location }}</td>
+        <td>{{ ed.notes }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <div
@@ -33,12 +57,6 @@
         required
     /></label>
     <br />
-    <label for="Date">Date </label>
-    <input
-      type="datetime-local"
-      name="Date"
-      [(ngModel)]="newEdEvent.date"
-    /><br />
     <label for="subject"
       >Subject
       <select name="subject">
@@ -51,7 +69,11 @@
         <option for="subject" value="Science">Science</option>
         <option for="subject" value="Social Studies">Social Studies</option>
       </select></label
-    ><br />
+    >
+    <br />
+    <label for="Date">Date </label>
+    <input type="datetime-local" name="Date" [(ngModel)]="newEdEvent.date" />
+    <br />
     <label for="duration">Duration (minutes) </label>
     <input
       type="text"
