@@ -6,7 +6,7 @@
     class="btn btn-outline-success"
     (click)="[switchList(), switchCreateNewOff()]"
   >
-    Search By Student Name
+    Search Student Name
   </button>
   <input type="text" name="studentsearch" [(ngModel)]="student" />
 </form>
@@ -17,12 +17,13 @@
     class="btn btn-outline-success"
     (click)="[switchCreateNew(), switchListOff()]"
   >
-    Add New Education Event
+    New Education Event
   </button>
 </div>
 
 <div id="lookUpByNameList" *ngIf="showListSwitch">
   <!-- List content for events by student name -->
+  <h4>Education Records</h4>
   <table class="table table-striped table-hover table-borderless">
     <thead>
       <th scope="col">Subject</th>
@@ -38,6 +39,13 @@
         <td>{{ ed.duration }}</td>
         <td>{{ ed.location }}</td>
         <td>{{ ed.notes }}</td>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          (click)="[selectedAssignToEdEvent(ed)]"
+        >
+          Edit
+        </button>
       </tr>
     </tbody>
   </table>
@@ -110,7 +118,7 @@
   <button
     type="button"
     class="btn btn-outline-secondary"
-    (click)="[switchConfirmCreateNew()]"
+    (click)="switchConfirmCreateNew()"
   >
     Close
   </button>
@@ -130,9 +138,59 @@
   </button>
 </div>
 
-<div id="showUpdateMenu" *ngIf="showUpdateSwitch">
-  <!-- update menu prepopulated with current information and buttons to save, cancel and delete. SAVE will invoke a propmt to display the newly created record and a confirmation button-->
-</div>
+<!-- update menu prepopulated with current information and buttons to save, cancel and delete. SAVE will invoke a propmt to display the newly created record and a confirmation button-->
+<form name="updateEdEventForm" class="css-form" *ngIf="editEdEvent">
+  <label for="studentName"
+    >Student Name
+    <input
+      type="text"
+      name="studentName"
+      [(ngModel)]="editEdEvent.student"
+      required
+  /></label>
+  <br />
+  <label for="subject"
+    >Subject
+    <select name="subject" [(ngModel)]="editEdEvent.subject">
+      <option for="subject" value="Elective" id="defaultSubject">
+        Elective
+      </option>
+      <option for="subject" value="Language Arts">Language Arts</option>
+      <option for="subject" value="Math">Math</option>
+      <option for="subject" value="Reading">Reading</option>
+      <option for="subject" value="Science">Science</option>
+      <option for="subject" value="Social Studies">Social Studies</option>
+    </select></label
+  >
+  <br />
+  <label for="Date">Date </label>
+  <input type="datetime-local" name="Date" [(ngModel)]="editEdEvent.date" />
+  <br />
+  <label for="duration">Duration (minutes) </label>
+  <input type="text" name="duration" [(ngModel)]="editEdEvent.duration" /><br />
+  <label for="location">Location </label>
+  <input
+    type="blockquote"
+    name="location"
+    [(ngModel)]="editEdEvent.location"
+  /><br />
+  <label for="notes">Notes </label>
+  <input type="textarea" name="notes" [(ngModel)]="editEdEvent.notes" /><br />
+  <button
+    class="btn btn-outline-success"
+    type="submit"
+    (click)="updateEdEvent(editEdEvent)"
+  >
+    Save
+  </button>
+  <button
+    class="btn btn-outline-success"
+    type="button"
+    (click)="editEdEventToNull()"
+  >
+    Cancel
+  </button>
+</form>
 
 <div id="saveEdEventConfirm" *ngIf="showUpdatedConfirmSwitch">
   <!-- display the updated record with a button to confirm saving the information of canceling -->

@@ -32,9 +32,131 @@ export class EdEventListComponent implements OnInit {
   ) {}
   // ***********ALL FUNCTIONS FOR THE HTML DOCUMENT**********
 
+  // *******VARIABLE ASSIGNMENTS******
   ngOnInit(): void {
     this.reload();
   }
+
+  reload() {
+    this.edEventService.index().subscribe({
+      next: (data) => {
+        this.allEdEvents = data;
+      },
+      error: (err) => {
+        console.error('EdEventComponent.reload(): error loading EdEvents:');
+        console.error(err);
+      },
+    });
+  }
+  reloadStudent() {
+    this.edEventService.byName(this.student).subscribe({
+      next: (data) => {
+        this.edEvents = data;
+      },
+      error: (err) => {
+        console.error('EdEventComponent.reload(): error loading EdEvents:');
+        console.error(err);
+      },
+    });
+  }
+
+  selectedAssignToEdEvent(edEvent: EdEvent) {
+    this.selected = edEvent;
+    this.setEditEdEvent();
+  }
+  setEditEdEvent() {
+    this.editEdEvent = Object.assign({}, this.selected);
+  }
+  editEdEventToNull() {
+    this.editEdEvent = null;
+    this.switchUpdateOff();
+  }
+
+  // CRUD FUNCTIONALITY
+  //**********CREATE**********/
+  createEdEvent() {
+    // validate complete data before invoking the create function on the backend
+    console.log('THE LIST BOOLEAN: ' + this.showListSwitch);
+    this.edEventService.create(this.newEdEvent).subscribe({
+      next: (data) => {
+        if (this.showConfirmCreateNewSwitch) {
+          this.newEdEvent = new EdEvent();
+          this.reload();
+          this.reloadStudent();
+        }
+      },
+      error: (err) => {
+        console.error('TodoListComponent.create(): error creating todo:');
+        console.error(err);
+      },
+    });
+  }
+  //**********RETRIEVE********
+  displayEdEventsTableByStudentName() {
+    this.switchCreateNewOff();
+    this.selected;
+    this.edEventService.byName(this.student).subscribe({
+      next: (data) => {
+        this.edEvents = data;
+        this.editEdEvent = null;
+        this.reload();
+      },
+      error: (err) => {
+        console.error(
+          'EdEventListComponent.displayEdEventsTable(): error retrieving ed events by name:'
+        );
+        console.error(err);
+      },
+    });
+  }
+
+  //**********UPDATE**********
+
+  updateEdEvent(updatedEdEvent: EdEvent) {
+    this.switchUpdateOn();
+    this.edEventService.update(updatedEdEvent).subscribe({
+      next: (data) => {
+        this.selected = data;
+        this.editEdEvent = null;
+        this.reload();
+      },
+      error: (err) => {
+        console.error(
+          'EdEventListComponent.updateEdEvent(): error updating edEvent:'
+        );
+        console.error(err);
+      },
+    });
+  }
+
+  updateCompleted(updatedEdEvent: EdEvent) {
+    // this.edEventService.update(updatedEdEvent).subscribe({
+    //   next: (data) => {
+    //     this.reload();
+    //   },
+    //   error: (err) => {
+    //     console.error(
+    //       'EdEventListComponent.updateCompleted(): error completing the update for this edEvent:'
+    //     );
+    //     console.error(err);
+    //   },
+    // });
+  }
+  //**********DELETE**********
+  deleteTodo(id: number) {
+    this.edEventService.destroy(id).subscribe({
+      next: () => {
+        this.reload();
+      },
+      error: (err) => {
+        console.error(
+          'EdEventComponent.deleteEdEvent(): error deleting edEvent:'
+        );
+        console.error(err);
+      },
+    });
+  }
+  // *******ON/OFF SWITCHES******
   switchList() {
     if (this.showListSwitch) {
       this.showListSwitch = false;
@@ -66,11 +188,14 @@ export class EdEventListComponent implements OnInit {
       this.showConfirmCreateNewSwitch = false;
     }
   }
-  switchUpdate() {
+  switchUpdateOn() {
+    if (!this.showUpdateSwitch) {
+      this.showUpdateSwitch = true;
+    }
+  }
+  switchUpdateOff() {
     if (this.showUpdateSwitch) {
       this.showUpdateSwitch = false;
-    } else {
-      this.showUpdateSwitch = true;
     }
   }
   switchUpdateConfirm() {
@@ -93,116 +218,5 @@ export class EdEventListComponent implements OnInit {
     } else {
       this.showDeleteConfirmedSwitch = true;
     }
-  }
-  // Method for populating the todos variable with the required data for all other functions
-  reload() {
-    this.edEventService.index().subscribe({
-      next: (data) => {
-        this.allEdEvents = data;
-      },
-      error: (err) => {
-        console.error('EdEventComponent.reload(): error loading EdEvents:');
-        console.error(err);
-      },
-    });
-  }
-  reloadStudent() {
-    this.edEventService.byName(this.student).subscribe({
-      next: (data) => {
-        this.edEvents = data;
-      },
-      error: (err) => {
-        console.error('EdEventComponent.reload(): error loading EdEvents:');
-        console.error(err);
-      },
-    });
-  }
-
-  // CRUD FUNCTIONALITY
-  //**********CREATE**********/
-  createEdEvent() {
-    // validate complete data before invoking the create function on the backend
-    console.log('THE LIST BOOLEAN: ' + this.showListSwitch);
-    this.edEventService.create(this.newEdEvent).subscribe({
-      next: (data) => {
-        if (this.showConfirmCreateNewSwitch) {
-          this.newEdEvent = new EdEvent();
-          this.reload();
-          this.reloadStudent();
-        }
-      },
-      error: (err) => {
-        console.error('TodoListComponent.create(): error creating todo:');
-        console.error(err);
-      },
-    });
-  }
-  //**********RETRIEVE********
-  displayEdEventsTableByStudentName() {
-    this.switchCreateNewOff();
-    this.edEventService.byName(this.student).subscribe({
-      next: (data) => {
-        this.edEvents = data;
-        this.editEdEvent = null;
-        this.reload();
-      },
-      error: (err) => {
-        console.error(
-          'EdEventListComponent.displayEdEventsTable(): error retrieving ed events by name:'
-        );
-        console.error(err);
-      },
-    });
-  }
-
-  displayEdEvent(edEvent: EdEvent) {
-    this.selected = edEvent;
-  }
-  //**********UPDATE**********
-  setEditEdEvent() {
-    this.editEdEvent = Object.assign({}, this.selected);
-  }
-
-  updateEdEvent(updatedEdEvent: EdEvent) {
-    this.edEventService.update(updatedEdEvent).subscribe({
-      next: (data) => {
-        this.selected = data;
-        this.editEdEvent = null;
-        this.reload();
-      },
-      error: (err) => {
-        console.error(
-          'EdEventListComponent.updateEdEvent(): error updating edEvent:'
-        );
-        console.error(err);
-      },
-    });
-  }
-  updateCompleted(updatedEdEvent: EdEvent) {
-    this.edEventService.update(updatedEdEvent).subscribe({
-      next: (data) => {
-        this.reload();
-      },
-      error: (err) => {
-        console.error(
-          'EdEventListComponent.updateCompleted(): error completing the update for this edEvent:'
-        );
-        console.error(err);
-      },
-    });
-  }
-  //**********DELETE**********
-  deleteTodo(id: number) {
-    this.edEventService.destroy(id).subscribe({
-      next: () => {
-        this.reload();
-      },
-      error: (err) => {
-        console.error(
-          'EdEventComponent.deleteEdEvent(): error deleting edEvent:'
-        );
-        console.error(err);
-      },
-    });
   }
 }
