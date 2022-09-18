@@ -77,7 +77,7 @@ export class EdEventListComponent implements OnInit {
   //**********CREATE**********/
   createEdEvent() {
     // validate complete data before invoking the create function on the backend
-    console.log('THE LIST BOOLEAN: ' + this.showListSwitch);
+    this.switchCreateNewOff();
     this.edEventService.create(this.newEdEvent).subscribe({
       next: (data) => {
         if (this.showConfirmCreateNewSwitch) {
@@ -186,6 +186,7 @@ export class EdEventListComponent implements OnInit {
   switchCreateNewOff() {
     if (this.showConfirmCreateNewSwitch) {
       this.showConfirmCreateNewSwitch = false;
+      this.showCreateNewEventSwitch = false;
     }
   }
   switchUpdateOn() {

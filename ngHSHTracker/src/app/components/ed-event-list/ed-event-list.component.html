@@ -65,6 +65,7 @@
   <!-- menu for creating a new event -->
   <br />
   <form name="createEdEventForm" class="css-form" novalidate>
+    <h4>Record New Education Event</h4>
     <label for="studentName"
       >Student Name
       <input
@@ -74,9 +75,9 @@
         required
     /></label>
     <br />
-    <label for="subject"
+    <label for="subject" required
       >Subject
-      <select name="subject" [(ngModel)]="newEdEvent.subject">
+      <select name="subject" required [(ngModel)]="newEdEvent.subject">
         <option for="subject" value="Elective" id="defaultSubject">
           Elective
         </option>
@@ -93,14 +94,17 @@
     <br />
     <label for="duration">Duration (minutes) </label>
     <input
-      type="text"
+      type="number"
       name="duration"
+      pattern="[0-9]"
+      required
       [(ngModel)]="newEdEvent.duration"
     /><br />
     <label for="location">Location </label>
     <input
       type="blockquote"
       name="location"
+      required
       [(ngModel)]="newEdEvent.location"
     /><br />
     <label for="notes">Notes </label>
@@ -112,6 +116,14 @@
     >
       Save
     </button>
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      (click)="switchCreateNew()"
+    >
+      Cancel
+    </button>
+    <br />
   </form>
 </div>
 
@@ -144,19 +156,21 @@
 </div>
 
 <!-- update menu prepopulated with current information and buttons to save, cancel and delete. SAVE will invoke a propmt to display the newly created record and a confirmation button-->
-<form name="updateEdEventForm" class="css-form" *ngIf="editEdEvent">
+<form name="updateEdEventForm" class="css-form" *ngIf="editEdEvent" novalidate>
+  <br />
+  <h4>Edit Record</h4>
   <label for="studentName"
     >Student Name
     <input
       type="text"
       name="studentName"
       [(ngModel)]="editEdEvent.student"
-      required
+      class="required"
   /></label>
   <br />
   <label for="subject"
     >Subject
-    <select name="subject" [(ngModel)]="editEdEvent.subject">
+    <select name="subject" [(ngModel)]="editEdEvent.subject" class="required">
       <option for="subject" value="Elective" id="defaultSubject">
         Elective
       </option>
@@ -172,11 +186,17 @@
   <input type="datetime-local" name="Date" [(ngModel)]="editEdEvent.date" />
   <br />
   <label for="duration">Duration (minutes) </label>
-  <input type="text" name="duration" [(ngModel)]="editEdEvent.duration" /><br />
+  <input
+    type="text"
+    name="duration"
+    class="required"
+    [(ngModel)]="editEdEvent.duration"
+  /><br />
   <label for="location">Location </label>
   <input
-    type="blockquote"
+    type="textarea"
     name="location"
+    class="required"
     [(ngModel)]="editEdEvent.location"
   /><br />
   <label for="notes">Notes </label>
@@ -189,7 +209,7 @@
     Save
   </button>
   <button
-    class="btn btn-outline-success"
+    class="btn btn-outline-secondary"
     type="button"
     (click)="editEdEventToNull()"
   >
