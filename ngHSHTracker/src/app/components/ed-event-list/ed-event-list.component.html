@@ -24,38 +24,6 @@
   </button>
 </div>
 
-<div id="lookUpByNameList" *ngIf="showListSwitch">
-  <!-- List content for events by student name -->
-  <br />
-  <h4>Education Records For {{ this.student }}</h4>
-  <br />
-  <table class="table table-hover table-borderless">
-    <thead>
-      <th scope="col">Subject</th>
-      <th scope="col">Date</th>
-      <th scope="col">Duration (minutes)</th>
-      <th scope="col">Location</th>
-      <th scope="col">Notes</th>
-    </thead>
-    <tbody class="table-group-divider">
-      <tr *ngFor="let ed of edEvents">
-        <td>{{ ed.subject }}</td>
-        <td>{{ ed.date }}</td>
-        <td>{{ ed.duration }}</td>
-        <td>{{ ed.location }}</td>
-        <td>{{ ed.notes }}</td>
-        <button
-          type="button"
-          class="btn btn-outline-success"
-          (click)="[selectedAssignToEdEvent(ed)]"
-        >
-          Edit
-        </button>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
 <div
   id="createNewEdEvent"
   *ngIf="showCreateNewEventSwitch"
@@ -64,13 +32,19 @@
 >
   <!-- menu for creating a new event -->
   <br />
-  <form name="createEdEventForm" class="css-form" novalidate>
+  <form
+    name="createEdEventForm"
+    class="css-form"
+    method="POST"
+    action="ed-event-list.component.ts"
+  >
     <h4>Record New Education Event</h4>
     <label for="studentName"
       >Student Name
       <input
         type="text"
         name="studentName"
+        minlength="2"
         [(ngModel)]="newEdEvent.student"
         required
     /></label>
@@ -97,8 +71,9 @@
       type="number"
       name="duration"
       pattern="[0-9]"
-      required
+      min="1"
       [(ngModel)]="newEdEvent.duration"
+      required
     /><br />
     <label for="location">Location </label>
     <input
@@ -142,21 +117,51 @@
   <button
     type="button"
     class="btn btn-outline-secondary"
-    (click)="[switchConfirmCreateNew(), switchListOn()]"
-  >
-    Review Students Records
-  </button>
-  <button
-    type="button"
-    class="btn btn-outline-secondary"
     (click)="switchConfirmCreateNew()"
   >
     Close
   </button>
 </div>
 
+<div id="lookUpByNameList" *ngIf="showListSwitch">
+  <!-- List content for events by student name -->
+  <br />
+  <h4>Education Records For {{ this.student }}</h4>
+  <br />
+  <table class="table table-hover table-borderless">
+    <thead>
+      <th scope="col">Subject</th>
+      <th scope="col">Date</th>
+      <th scope="col">Duration (minutes)</th>
+      <th scope="col">Location</th>
+      <th scope="col">Notes</th>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr *ngFor="let ed of edEvents">
+        <td>{{ ed.subject }}</td>
+        <td>{{ ed.date }}</td>
+        <td>{{ ed.duration }}</td>
+        <td>{{ ed.location }}</td>
+        <td>{{ ed.notes }}</td>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          (click)="[selectedAssignToEdEvent(ed)]"
+        >
+          Edit
+        </button>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <!-- update menu prepopulated with current information and buttons to save, cancel and delete. SAVE will invoke a propmt to display the newly created record and a confirmation button-->
-<form name="updateEdEventForm" class="css-form" *ngIf="editEdEvent" novalidate>
+<form
+  name="updateEdEventForm"
+  class="css-form"
+  *ngIf="editEdEvent"
+  method="PUT"
+>
   <br />
   <h4>Edit Record</h4>
   <label for="studentName"
@@ -165,7 +170,7 @@
       type="text"
       name="studentName"
       [(ngModel)]="editEdEvent.student"
-      class="required"
+      required
   /></label>
   <br />
   <label for="subject"
@@ -218,7 +223,7 @@
   <button
     class="btn btn-outline-danger"
     type="button"
-    (click)="switchDeleteLastChance()"
+    (click)="switchDeleteLastChanceOn()"
   >
     Delete
   </button>
@@ -239,7 +244,7 @@
     type="button"
     (click)="[switchUpdateConfirmOff(), switchListOn()]"
   >
-    Back
+    Records
   </button>
 </div>
 <!-- display a question asking user to confirm with options to cancel or confirm -->
@@ -265,4 +270,20 @@
 
 <div id="deleteConfirmed" *ngIf="showDeleteConfirmedSwitch">
   <!-- display confirmation the record was deleted with an ok button -->
+  <br />
+  <h4>The record has been deleted</h4>
+  <button
+    class="btn btn-outline-secondary"
+    type="button"
+    (click)="switchDeleteConfirmOff()"
+  >
+    Ok
+  </button>
+  <button
+    class="btn btn-outline-success"
+    type="button"
+    (click)="[switchDeleteConfirmOff(), switchListOn()]"
+  >
+    Records
+  </button>
 </div>

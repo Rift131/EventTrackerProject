@@ -95,6 +95,8 @@ export class EdEventListComponent implements OnInit {
   //**********RETRIEVE********
   displayEdEventsTableByStudentName() {
     this.switchCreateNewOff();
+    this.switchDeleteLastChanceOff();
+    this.switchDeleteConfirmOff();
     this.edEventService.byName(this.student).subscribe({
       next: (data) => {
         this.edEvents = data;
@@ -130,23 +132,13 @@ export class EdEventListComponent implements OnInit {
     });
   }
 
-  updateCompleted(updatedEdEvent: EdEvent) {
-    // this.edEventService.update(updatedEdEvent).subscribe({
-    //   next: (data) => {
-    //     this.reload();
-    //   },
-    //   error: (err) => {
-    //     console.error(
-    //       'EdEventListComponent.updateCompleted(): error completing the update for this edEvent:'
-    //     );
-    //     console.error(err);
-    //   },
-    // });
-  }
   //**********DELETE**********
   deleteEdEvent(id: number) {
     this.edEventService.destroy(id).subscribe({
       next: () => {
+        this.switchDeleteLastChanceOff();
+        this.editEdEventToNull();
+        this.switchDeleteConfirmOn();
         this.reload();
       },
       error: (err) => {
@@ -210,16 +202,24 @@ export class EdEventListComponent implements OnInit {
       this.showUpdatedConfirmSwitch = false;
     }
   }
-  switchDeleteLastChance() {
+  switchDeleteLastChanceOn() {
     if (!this.showDeletedConfirmSwitch) {
       this.showDeletedConfirmSwitch = true;
     }
   }
-  switchDeleteConfirm() {
+  switchDeleteLastChanceOff() {
+    if (this.showDeletedConfirmSwitch) {
+      this.showDeletedConfirmSwitch = false;
+    }
+  }
+  switchDeleteConfirmOn() {
+    if (!this.showDeleteConfirmedSwitch) {
+      this.showDeleteConfirmedSwitch = true;
+    }
+  }
+  switchDeleteConfirmOff() {
     if (this.showDeleteConfirmedSwitch) {
       this.showDeleteConfirmedSwitch = false;
-    } else {
-      this.showDeleteConfirmedSwitch = true;
     }
   }
 }
