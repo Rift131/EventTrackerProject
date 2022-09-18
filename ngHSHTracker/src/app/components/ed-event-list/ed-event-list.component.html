@@ -12,7 +12,11 @@
 </form>
 
 <div id="addNewEdEventOption">
-  <button class="btn btn-outline-success" (click)="switchCreateNew()">
+  <button
+    type="button"
+    class="btn btn-outline-success"
+    (click)="switchCreateNew()"
+  >
     Add New Education Event
   </button>
 </div>
@@ -59,7 +63,7 @@
     <br />
     <label for="subject"
       >Subject
-      <select name="subject">
+      <select name="subject" [(ngModel)]="newEdEvent.subject">
         <option for="subject" value="Elective" id="defaultSubject">
           Elective
         </option>
@@ -104,12 +108,14 @@
   <h4>Your record has been saved!</h4>
   <br />
   <button
+    type="button"
     class="btn btn-outline-secondary"
     (click)="[switchConfirmCreateNew()]"
   >
     Back to HSH
   </button>
   <button
+    type="button"
     class="btn btn-outline-success"
     (click)="[switchConfirmCreateNew(), switchCreateNew()]"
   >
@@ -132,10 +138,3 @@
 <div id="deleteConfirmed" *ngIf="showDeleteConfirmedSwitch">
   <!-- display confirmation the record was deleted with an ok button -->
 </div>
-
-<script>
-  var app = angular.module("app", []);
-  app.controller("myCtrl", function ($scope) {
-    $scope.Name = "";
-  });
-</script>
