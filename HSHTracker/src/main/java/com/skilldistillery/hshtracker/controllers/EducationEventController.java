@@ -31,7 +31,7 @@ public class EducationEventController {
 		return svc.index();
 	}
 
-	@GetMapping("edEvents{edEventsId}")
+	@GetMapping("edEvents/{edEventsId}")
 	public EducationEvent findEdEventById(@PathVariable Integer edEventsId) {
 		return svc.edEventById(edEventsId);
 	}
@@ -45,7 +45,6 @@ public class EducationEventController {
 	public List<EducationEvent> findEdEventsByLocation(@PathVariable String location) {
 		return svc.findByLocation(location);
 	}
-
 	@GetMapping("edEventsStudent/{student}")
 	public List<EducationEvent> findEdEventsByStudent(@PathVariable String student, HttpServletResponse resp) {
 		List<EducationEvent> edEventByName = null;
@@ -98,11 +97,8 @@ public class EducationEventController {
 	public EducationEvent updateEdEvent(@RequestBody EducationEvent edEvent, @PathVariable int id,
 			HttpServletResponse resp) {
 		EducationEvent updated = null;
-		//edEvent.id = id;
-
 		try {
 			updated = svc.updateEdEvent(edEvent, id);
-			resp.setStatus(204);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(400);

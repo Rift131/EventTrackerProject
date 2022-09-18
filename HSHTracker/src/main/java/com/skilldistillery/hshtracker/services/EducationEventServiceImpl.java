@@ -2,6 +2,7 @@ package com.skilldistillery.hshtracker.services;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,29 +72,32 @@ public class EducationEventServiceImpl implements EducationEventService{
 	}
 	@Override
 	public EducationEvent updateEdEvent(EducationEvent edEvent, int edId) {
-		EducationEvent exists = edEventById(edId);
-		if(exists == null) {
-			return null;
-		} else if (exists.getDate() != null) {
-			exists.setDate(edEvent.getDate());
+		Optional<EducationEvent> exists = Optional.of(repo.findById(edId));
+		if(exists.isPresent()) {
+			EducationEvent updatedEvent = exists.get();
+		if(updatedEvent.getDate() != null) {
+			updatedEvent.setDate(edEvent.getDate());
 		}
-		if (exists.getDuration() != 0) {
+		if (updatedEvent.getDuration() != 0) {
 			System.out.println("Duration update");
-			exists.setDuration(edEvent.getDuration());
+			updatedEvent.setDuration(edEvent.getDuration());
 		}
-		if (exists.getSubject() != null) {
-			exists.setSubject(edEvent.getSubject());
+		if (updatedEvent.getSubject() != null) {
+			updatedEvent.setSubject(edEvent.getSubject());
 		}
-		if (exists.getLocation() != null) {
-			exists.setLocation(edEvent.getLocation());
+		if (updatedEvent.getLocation() != null) {
+			updatedEvent.setLocation(edEvent.getLocation());
 		}
-		if (exists.getStudent() != null) {
-			exists.setStudent(edEvent.getStudent());
+		if (updatedEvent.getStudent() != null) {
+			updatedEvent.setStudent(edEvent.getStudent());
 		}
-		if (exists.getNotes() != null) {
-			exists.setNotes(edEvent.getNotes());
+		if (updatedEvent.getNotes() != null) {
+			updatedEvent.setNotes(edEvent.getNotes());
 		}
-		return repo.saveAndFlush(exists);
+		repo.save(updatedEvent);
+		return updatedEvent;
+		}
+		return null;
 	}
 	
 	@Override
