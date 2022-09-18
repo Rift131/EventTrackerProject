@@ -42,6 +42,11 @@ export class EdEventListComponent implements OnInit {
       this.showListSwitch = true;
     }
   }
+  switchListOff() {
+    if (this.showListSwitch) {
+      this.showListSwitch = false;
+    }
+  }
   switchCreateNew() {
     if (this.showCreateNewEventSwitch) {
       this.showCreateNewEventSwitch = false;
@@ -54,6 +59,11 @@ export class EdEventListComponent implements OnInit {
       this.showConfirmCreateNewSwitch = false;
     } else {
       this.showConfirmCreateNewSwitch = true;
+    }
+  }
+  switchCreateNewOff() {
+    if (this.showConfirmCreateNewSwitch) {
+      this.showConfirmCreateNewSwitch = false;
     }
   }
   switchUpdate() {
@@ -96,17 +106,29 @@ export class EdEventListComponent implements OnInit {
       },
     });
   }
+  reloadStudent() {
+    this.edEventService.byName(this.student).subscribe({
+      next: (data) => {
+        this.edEvents = data;
+      },
+      error: (err) => {
+        console.error('EdEventComponent.reload(): error loading EdEvents:');
+        console.error(err);
+      },
+    });
+  }
 
   // CRUD FUNCTIONALITY
   //**********CREATE**********/
   createEdEvent() {
     // validate complete data before invoking the create function on the backend
-
+    console.log('THE LIST BOOLEAN: ' + this.showListSwitch);
     this.edEventService.create(this.newEdEvent).subscribe({
       next: (data) => {
         if (this.showConfirmCreateNewSwitch) {
           this.newEdEvent = new EdEvent();
           this.reload();
+          this.reloadStudent();
         }
       },
       error: (err) => {
@@ -117,6 +139,7 @@ export class EdEventListComponent implements OnInit {
   }
   //**********RETRIEVE********
   displayEdEventsTableByStudentName() {
+    this.switchCreateNewOff();
     this.edEventService.byName(this.student).subscribe({
       next: (data) => {
         this.edEvents = data;

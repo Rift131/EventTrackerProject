@@ -4,7 +4,7 @@
   <button
     type="submit"
     class="btn btn-outline-success"
-    (click)="[switchList()]"
+    (click)="[switchList(), switchCreateNewOff()]"
   >
     Search By Student Name
   </button>
@@ -15,7 +15,7 @@
   <button
     type="button"
     class="btn btn-outline-success"
-    (click)="switchCreateNew()"
+    (click)="[switchCreateNew(), switchListOff()]"
   >
     Add New Education Event
   </button>
@@ -112,7 +112,7 @@
     class="btn btn-outline-secondary"
     (click)="[switchConfirmCreateNew()]"
   >
-    Back to HSH
+    Close
   </button>
   <button
     type="button"
@@ -120,6 +120,13 @@
     (click)="[switchConfirmCreateNew(), switchCreateNew()]"
   >
     Record Another Education Event
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-success"
+    (click)="[switchConfirmCreateNew(), switchList()]"
+  >
+    Review Students Records
   </button>
 </div>
 
