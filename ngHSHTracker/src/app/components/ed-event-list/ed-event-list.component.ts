@@ -61,6 +61,7 @@ export class EdEventListComponent implements OnInit {
   }
 
   selectedAssignToEdEvent(edEvent: EdEvent) {
+    this.switchListOff();
     this.selected = edEvent;
     this.setEditEdEvent();
   }
@@ -94,7 +95,6 @@ export class EdEventListComponent implements OnInit {
   //**********RETRIEVE********
   displayEdEventsTableByStudentName() {
     this.switchCreateNewOff();
-    this.selected;
     this.edEventService.byName(this.student).subscribe({
       next: (data) => {
         this.edEvents = data;
@@ -118,6 +118,7 @@ export class EdEventListComponent implements OnInit {
       next: (data) => {
         this.selected = data;
         this.editEdEvent = null;
+        this.switchUpdateConfirmOn();
         this.reload();
       },
       error: (err) => {
@@ -157,10 +158,9 @@ export class EdEventListComponent implements OnInit {
     });
   }
   // *******ON/OFF SWITCHES******
-  switchList() {
-    if (this.showListSwitch) {
-      this.showListSwitch = false;
-    } else {
+  switchListOn() {
+    if (!this.showListSwitch) {
+      this.reloadStudent();
       this.showListSwitch = true;
     }
   }
@@ -195,14 +195,18 @@ export class EdEventListComponent implements OnInit {
   }
   switchUpdateOff() {
     if (this.showUpdateSwitch) {
+      this.switchUpdateConfirmOn();
       this.showUpdateSwitch = false;
     }
   }
-  switchUpdateConfirm() {
+  switchUpdateConfirmOn() {
+    if (!this.showUpdatedConfirmSwitch) {
+      this.showUpdatedConfirmSwitch = true;
+    }
+  }
+  switchUpdateConfirmOff() {
     if (this.showUpdatedConfirmSwitch) {
       this.showUpdatedConfirmSwitch = false;
-    } else {
-      this.showUpdatedConfirmSwitch = true;
     }
   }
   switchDeleteLastChance() {

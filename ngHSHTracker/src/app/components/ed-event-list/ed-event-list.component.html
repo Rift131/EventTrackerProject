@@ -1,12 +1,15 @@
+<br />
 <h1>{{ title }}</h1>
+<br />
+
 <!-- Options at top of screen: search by name and create new event -->
 <form (submit)="displayEdEventsTableByStudentName()">
   <button
     type="submit"
     class="btn btn-outline-success"
-    (click)="[switchList(), switchCreateNewOff()]"
+    (click)="[switchListOn(), switchCreateNewOff()]"
   >
-    Search Student Name
+    Student Name Search
   </button>
   <input type="text" name="studentsearch" [(ngModel)]="student" />
 </form>
@@ -23,8 +26,10 @@
 
 <div id="lookUpByNameList" *ngIf="showListSwitch">
   <!-- List content for events by student name -->
-  <h4>Education Records</h4>
-  <table class="table table-striped table-hover table-borderless">
+  <br />
+  <h4>Education Records For {{ this.student }}</h4>
+  <br />
+  <table class="table table-hover table-borderless">
     <thead>
       <th scope="col">Subject</th>
       <th scope="col">Date</th>
@@ -117,13 +122,6 @@
   <br />
   <button
     type="button"
-    class="btn btn-outline-secondary"
-    (click)="switchConfirmCreateNew()"
-  >
-    Close
-  </button>
-  <button
-    type="button"
     class="btn btn-outline-success"
     (click)="[switchConfirmCreateNew(), switchCreateNew()]"
   >
@@ -131,10 +129,17 @@
   </button>
   <button
     type="button"
-    class="btn btn-outline-success"
-    (click)="[switchConfirmCreateNew(), switchList()]"
+    class="btn btn-outline-secondary"
+    (click)="[switchConfirmCreateNew(), switchListOn()]"
   >
     Review Students Records
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-secondary"
+    (click)="switchConfirmCreateNew()"
+  >
+    Close
   </button>
 </div>
 
@@ -201,6 +206,21 @@
 
 <div id="saveEdEventConfirm" *ngIf="showUpdatedConfirmSwitch">
   <!-- display the updated record with a button to confirm saving the information of canceling -->
+  <h4>Changes have been saved!</h4>
+  <button
+    class="btn btn-outline-secondary"
+    type="button"
+    (click)="switchUpdateConfirmOff()"
+  >
+    Ok
+  </button>
+  <button
+    class="btn btn-outline-success"
+    type="button"
+    (click)="[switchUpdateConfirmOff(), switchListOn()]"
+  >
+    Back
+  </button>
 </div>
 <!-- display a question asking user to confirm with options to cancel or confirm -->
 <div *ngIf="showDeletedConfirmSwitch && editEdEvent">
