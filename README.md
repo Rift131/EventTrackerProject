@@ -7,7 +7,7 @@
 
 ## Overview
 
-For my SkillDistillery event-tracker project, I have built the backend of an application named Homeschool Hours Tracker. Full credit for the idea of this application goes to my wonderful wife who has homeschooled our boys from the very beginning after her 7-year career as a high school science teacher. The intent of this application is to solve the problem of Missouri's requirement for fellow parents who homeschool their children, to log...
+For my SkillDistillery event-tracker project, I have built an application named Homeschool Hours Tracker. Full credit for the idea of this application goes to my wonderful wife who has homeschooled our boys from the very beginning after her 7-year career as a high school science teacher. The intent of this application is to solve the problem of Missouri's requirement for fellow parents who homeschool their children, to log...
 * Hours invested across core and elective subjects
 * The location of where the education was conducted
 
@@ -19,23 +19,25 @@ per year (homeschool years begin 1 July and run through 30 June)
 
 <p align="center"><img src="https://media.giphy.com/media/Qb6YqpuuPP4SlIdyK7/giphy.gif"/></p>
 
-This application will provide our family and fellow Missouri parents with a solution that satisfies the Missouri hour record-keeping requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. However, things change! While these requirements are not forecasted to evolve as of this writing (September of 2022), it is important to maintain situational awareness... 
+Once this proof of concept is fleshed out, this application will provide our family and fellow Missouri parents with a solution that satisfies the Missouri hour record-keeping requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. However, things change! While these requirements are not forecasted to evolve as of this writing (September of 2022), it is important to maintain situational awareness... 
 
 > RECOMMENDED: Visit  www.hslda.org for potential requirement changes at least once each year, before beginning a new year of teaching.
 > RECOMMENDED: Visit https://fhe-mo.org/ to stay informed of proposed legislative changes affecting homeshool freedom.
 
 
-## Take The Homeschool Hours Tracker For A Test Drive!
+## Take The HomeSchool Hours Tracker For A Test Drive!
 
-If you would like to visit the Education Event tracker site, please feel free to use the link below! Reference the table within the "Testing With Postman" section below for example URI's you can use to interact with the applications backend functionality. If you have any questions or would like to discuss this project, please don't hesitate to email me at ken@kendev131.com. 
+If you would like to visit the Education Event tracker site, please feel free to use the link below! When visiting the site, you can search for students data by the name "Timmy", "Sally", "Billy" and "Susan" or create a record for a new student.   If you have any questions or would like to discuss this project, please don't hesitate to email me at ken@kendev131.com. 
 
 <p align="center"><a href="http://3.21.142.131:8080/HSHTracker">Click Here to Visit Homeschool Hours Tracker Project Site</a></>
 
+If you would like to test the backend of the application, reference the table within the "Testing With Postman" section below for example URI's you can use to interact with the applications functionality.
+
 ## Description
 
-The first iteration of this application is an extremely simplified approach of using only one table in the database. Multiple other tables, though not initially implemented, were created to enable greater functionality at a later time.
+The proof-of-concept phase of this applications development is an extremely simplified approach. Only one table in the database is used while multiple other tables, though not initially implemented, were created to enable greater functionality at a later time.
 
-In this first version, the backend has been created using REST and thoroughly tested using Postman to ensure URL's invoke the desired results. THe frontend has been built, initially, with vanilla Javascript to link the backend with the frontend. 
+In this alpha version, the backend has been created using REST and thoroughly tested using Postman to ensure URL's invoke the desired results. THe frontend has been built with, first using vanilla Javascript to link the backend with the frontend. The second approach utilized Angular and Boorstrap. 
 
 ## Methodology
 
@@ -43,7 +45,9 @@ One pillar at a time.
 
 What I enjoyed most about the backend-building stage the application is the very straight forward approach of building the backend from "the ground up". Each functionality "pillar" began with the Repository (where applicable), then the Service layer, the Service Implementation layer, next the Controller and finally using Postman to prove functionality. No other functionality was started until the current capability proved successful. This approach kept each stage of functionality development clear and distinct from the others, thereby preventing getting "lost in the sauce" and ensuring troubleshooting was straight forward.
 
-The frontend required a disciplined approach of organization. The vanilla JavaScript file used for the DOM was divided into sections based on initialization and CRUD to ensure easier navigation. My desire would be to break up these functions across several JavaScript files but givent the short amount of time to develop this stage of the project, everything was kept in one place for simplicity. Angular is the final stage of this projects development and I look forward to what it will present for options that reduce the robustness of the vanill JavaScript code.
+The frontend, using  vanilla JavaScript to build the DOM, required a disciplined approach of organization. The DOM was divided into sections based on initialization and CRUD to ensure easier navigation. My desire would be to break up these functions across several JavaScript files but givent the short amount of time to develop this stage of the project, everything was kept in one place for simplicity. 
+
+The second frontend creation, using Angular, was similarly organized but with more segregating in the Typescript file to organize the many functions into their roles such as methods for changing boolean values, methods used to change other variable assignments to objects or back to null when no longer needed. Finally, as before, using comments, the CRUD functions were divided in the order presented by the acronym. Each time a pillar of functionality was created, the site would be refreshed and tested for the desired result. At first, the desired result was for the minimum viable product. Event if the site didn't present the information the way I wanted, the only objective that mattered was the basic functionality (create, retrieve, etc.). If the application at least performed that operation, it was time to move to the next minimum viable functionality piece. Once a minimum viable product was established, the desired interaction results and appearance were tackled.
 
 ## Testing the Backend With Postman
 
@@ -96,6 +100,8 @@ This project proved vital in gaining the following experience...
 * The use of the @CreationTimestamp greatly simplifies the use of LocalDateTime fields
 * The use of Postman for testing code and correlating the direct relationship of the URL to the methods as well as further verification of changes through writing SQL queries to the database in the zsh Terminal.
 * The creation of HTML elements through the DOM was especially insightful for ensuring the page only presents data when it's asked for. This code is especially verbose and requires the use of commments to assist in the organization of the many functions.
+* Working around issues presents problems for later down the road. When creating the DOM, the function to update an education event worked for recording the data in the database but did not give any data back from the controller to the DOM. I was able to code around the problem and still get the data to the frontend but I wasn't able to determine why the controller function was not behaving as expected. The following weekend, during the Angular frontend creation assignment, I essentially ran into the same problem. The error did not present itself as succinctly as it did when creating the DOM but I knew it had to be the same issue since the result was the same. Deciding to revisit the issue I was able to come up with better questions that lead to the answer I wasn't able to determine the previous weekend. The controller was setting an HTTP response code of 204 which I discovered doesn't return data. Changing the response code to 201 allowed my Angular frontend to function as desired. 
+* Building up an Angular frontend for the first time I got a much better understanding of the three-layers of the front end (model, component and service), how they interact and how the connection between the service and the backend controller is made. The brightest lightbulb moment for this service-to-controller connction for me was the realization that the service DOES NOT need to provide arguments for a controllers parameter annotated as a path variable. Instead, the path variable is provider for in the URL path itself. 
 
 
 ## Technologies 
@@ -148,3 +154,8 @@ After careful consideration of all the desired functionality with my wife has be
 * Example code excerpt showing the verboseness of using vanilla Javascript to tie the backend to the frontend. This excerpt uses the DOM to populate the HTML file with a pre-populated form for the user to perform updates to a record and continues past what you see here. 
 
  <p align="center"><img src="media/vanillaJSExample.png" width="350"></p>
+ 
+ * The very first iteration of the Angular/Bootstrap frontend. Not much to look at just yet but work has just begun!
+ 
+ <p align="center"><img src="media/angularFirstPass.png" width="350"></p>
+ 
