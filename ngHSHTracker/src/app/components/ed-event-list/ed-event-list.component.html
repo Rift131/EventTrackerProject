@@ -44,10 +44,12 @@
       <input
         type="text"
         name="studentName"
-        minlength="2"
         [(ngModel)]="newEdEvent.student"
+        #name="ngModel"
+        minlength="2"
         required
-    /></label>
+      />
+    </label>
     <br />
     <label for="subject" required
       >Subject
