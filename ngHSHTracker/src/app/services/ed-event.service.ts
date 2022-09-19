@@ -4,12 +4,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 @Injectable({
   providedIn: 'root',
 })
 export class EdEventService {
+  // Production Mode
+  private url = environment.baseUrl + 'api/';
+  // Development Mode
   private baseUrl = 'http://localhost:8083/api'; // adjust port to match server
-  private url = this.baseUrl + '/edEvents'; // change 'todos' to your API path
+  //private url = this.baseUrl + '/edEvents'; // change 'todos' to your API path
 
   constructor(private http: HttpClient, private datePipe: DatePipe) {}
 
